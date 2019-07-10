@@ -82,6 +82,7 @@
     <Compile Include="Models\GameMap.cs" />
     <Compile Include="Models\IDrawable.cs" />
     <Compile Include="Models\MapLoader.cs" />
+    <Compile Include="Models\Tiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
