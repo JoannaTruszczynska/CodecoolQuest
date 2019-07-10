@@ -5,7 +5,7 @@ namespace Codecool.Quest.Models {
         public int Height { get; private set; }
         public int Width { get; private set; }
         private readonly Cell[,] cells;
-        private Player Player { get; set; }
+        public Player Player { get; set; }
 
         public GameMap(int width, int height, CellType defaultCellType) {
             this.Width = width;
