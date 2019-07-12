@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Codecool.Quest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="475.352" Width="771.932">
+        Title="MainWindow" Height="475.352" Width="771.932" KeyDown="GameCanvas_KeyDown" >
     <Grid>
         <Canvas x:Name="gameCanvas" Margin="10"/>
     </Grid>
