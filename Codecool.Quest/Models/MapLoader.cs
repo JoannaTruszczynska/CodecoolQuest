@@ -4,7 +4,9 @@ using System.IO;
 namespace Codecool.Quest.Models {
     public class MapLoader {
         public static GameMap LoadMap() {
-            StreamReader stream = new StreamReader("/Resources/map.txt");
+            string dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            StreamReader stream = new StreamReader(dir + @"\Resources\map.txt");
             string firstline = stream.ReadLine();
             string[] firstline_split = firstline.Split(' ');
 
@@ -18,30 +20,26 @@ namespace Codecool.Quest.Models {
 
                 for (int x = 0; x < width; x++) {
                     if (x < line.Length) {
-                        Cell cell = map.getCell(x, y);
+                        Cell cell = map.GetCell(x, y);
 
                         switch (line[x]) {
                             case ' ': {
                                     cell.CellType = CellType.EMPTY;
                                     break;
                                 }
-
                             case '#': {
                                     cell.CellType = CellType.WALL;
                                     break;
                                 }
-
                             case '.': {
                                     cell.CellType = CellType.FLOOR;
                                     break;
                                 }
-
                             case 's': {
                                     cell.CellType = CellType.FLOOR;
                                     new Skeleton(cell);
                                     break;
                                 }
-
                             case '@': {
                                     cell.CellType = CellType.FLOOR;
                                     map.Player = new Player(cell);

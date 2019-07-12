@@ -18,7 +18,7 @@ namespace Codecool.Quest.Models {
             }
         }
 
-        public Cell getCell(int x, int y) {
+        public Cell GetCell(int x, int y) {
             return cells[x, y];
         }
     }

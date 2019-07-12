@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Codecool.Quest.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -9,12 +10,34 @@ namespace Codecool.Quest {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        GameMap map = MapLoader.LoadMap();
+
+        // TODO: create canvas based on map size
+
+
         public MainWindow() {
             InitializeComponent();
             Launch();
         }
 
         public void Launch() {
+            Refresh();
+        }
+
+        public void Refresh() {
+            for (int x = 0; x < map.Width; x++) {
+                for (int y = 0; y < map.Height; y++) {
+                    Cell cell = map.GetCell(x, y);
+                    if (cell.Actor != null) {
+                        Tiles.DrawTile(gameCanvas, cell.Actor, x, y);
+                    } else {
+                        Tiles.DrawTile(gameCanvas, cell, x, y);
+                    }
+                }
+            }
+        }
+
+        public void TestLaunch() {
             BitmapImage src = new BitmapImage();
             var img = @"pack://application:,,,/Resources/roguelikeDungeon_transparent.png";
             src.BeginInit();

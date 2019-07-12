@@ -18,24 +18,24 @@ namespace Codecool.Quest.Models {
             tileSet.CacheOption = BitmapCacheOption.OnLoad;
             tileSet.EndInit();
 
-            tileMap.Add("empty", new Tile(0, 0));
-            tileMap.Add("wall", new Tile(1, 3));
-            tileMap.Add("floor", new Tile(2, 0));
-            tileMap.Add("player", new Tile(27, 0));
-            tileMap.Add("skeleton", new Tile(29, 6));
+            tileMap.Add("empty", new Tile(8, 7));
+            tileMap.Add("wall", new Tile(8, 2));
+            tileMap.Add("floor", new Tile(6, 11));
+            tileMap.Add("player", new Tile(15, 17));
+            tileMap.Add("skeleton", new Tile(3, 2));
         }
 
         public class Tile {
             public int x, y, w, h;
             public Tile(int i, int j) {
-                x = i * (TILE_WIDTH + 2);
-                y = j * (TILE_WIDTH + 2);
+                x = i * (TILE_WIDTH + 1);
+                y = j * (TILE_WIDTH + 1);
                 w = TILE_WIDTH;
                 h = TILE_WIDTH;
             }
         }
 
-        public static void drawTile(Canvas context, IDrawable d, int x, int y) {
+        public static void DrawTile(Canvas context, IDrawable d, int x, int y) {
             Tile tile = tileMap[d.TileName];
 
             var bodyImage = new Image {
@@ -44,8 +44,11 @@ namespace Codecool.Quest.Models {
                     new Int32Rect(tile.x, tile.y, tile.w, tile.h)),
                 Stretch = Stretch.None,
                 Width = TILE_WIDTH,
-                Height = TILE_WIDTH
+                Height = TILE_WIDTH,
             };
+
+            bodyImage.SetValue(Canvas.LeftProperty, ((double)x * TILE_WIDTH));
+            bodyImage.SetValue(Canvas.TopProperty, ((double)y * TILE_WIDTH));
 
             context.Children.Add(bodyImage);
         }
