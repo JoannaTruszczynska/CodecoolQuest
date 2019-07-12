@@ -4,7 +4,7 @@ using System.IO;
 namespace Codecool.Quest.Models {
     public class MapLoader {
         public static GameMap LoadMap() {
-            StreamReader stream = new StreamReader("/map.txt");
+            StreamReader stream = new StreamReader("/Resources/map.txt");
             string firstline = stream.ReadLine();
             string[] firstline_split = firstline.Split(' ');
 
