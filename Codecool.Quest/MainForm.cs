@@ -2,27 +2,21 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Codecool.Quest
-{
-    public partial class MainForm : Form
-    {
+namespace Codecool.Quest {
+    public partial class MainForm : Form {
         GameMap map = MapLoader.LoadMap();
 
-        public MainForm()
-        {
+        public MainForm() {
             InitializeComponent();
             Launch();
         }
 
-        public void Launch()
-        {
+        public void Launch() {
             Refresh();
         }
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
+        private void MainForm_KeyDown(object sender, KeyEventArgs e) {
+            switch (e.KeyCode) {
                 case Keys.Left:
                     map.Player.Move(-1, 0);
                     Refresh();
@@ -42,21 +36,16 @@ namespace Codecool.Quest
             }
         }
 
-        private void MainForm_Paint(object sender, PaintEventArgs e)
-        {
+        private void MainForm_Paint(object sender, PaintEventArgs e) {
             e.Graphics.Clear(Color.Black);
 
-            for (int x = 0; x < map.Width; x++)
-            {
-                for (int y = 0; y < map.Height; y++)
-                {
+            for (int x = 0; x < map.Width; x++) {
+                for (int y = 0; y < map.Height; y++) {
                     Cell cell = map.GetCell(x, y);
-                    if (cell.Actor != null)
-                    {
+                    if (cell.Actor != null) {
                         Tiles.DrawTile(e.Graphics, cell.Actor, x, y);
                     }
-                    else
-                    {
+                    else {
                         Tiles.DrawTile(e.Graphics, cell, x, y);
                     }
                 }
