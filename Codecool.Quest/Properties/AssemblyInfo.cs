@@ -1,55 +1,36 @@
 ﻿using System.Reflection;
-using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Windows;
 
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+// Ogólne informacje o zestawie są kontrolowane poprzez następujący 
+// zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
+// powiązane z zestawem.
 [assembly: AssemblyTitle("Codecool.Quest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Codecool")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Codecool.Quest")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
+// Ustawienie elementu ComVisible na wartość false sprawia, że typy w tym zestawie są niewidoczne
+// dla składników COM. Jeśli potrzebny jest dostęp do typu w tym zestawie z
+// COM, ustaw wartość true dla atrybutu ComVisible tego typu.
 [assembly: ComVisible(false)]
 
-//In order to begin building localizable applications, set
-//<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
-//inside a <PropertyGroup>.  For example, if you are using US english
-//in your source files, set the <UICulture> to en-US.  Then uncomment
-//the NeutralResourceLanguage attribute below.  Update the "en-US" in
-//the line below to match the UICulture setting in the project file.
+// Następujący identyfikator GUID jest identyfikatorem biblioteki typów w przypadku udostępnienia tego projektu w modelu COM
+[assembly: Guid("e705a73b-d7c5-4f3c-afb5-d7ea15a2acc3")]
 
-//[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
-
-
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-                                     //(used if a resource is not found in the page,
-                                     // or application resource dictionaries)
-    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-                                              //(used if a resource is not found in the page,
-                                              // app, or any theme specific resource dictionaries)
-)]
-
-
-// Version information for an assembly consists of the following four values:
+// Informacje o wersji zestawu zawierają następujące cztery wartości:
 //
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
+//      Wersja główna
+//      Wersja pomocnicza
+//      Numer kompilacji
+//      Poprawka
 //
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
+// Możesz określić wszystkie wartości lub użyć domyślnych numerów kompilacji i poprawki
+// przy użyciu symbolu „*”, tak jak pokazano poniżej:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

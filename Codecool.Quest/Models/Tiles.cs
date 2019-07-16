@@ -1,56 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Codecool.Quest.Models {
     public static class Tiles {
-        public static int TILE_WIDTH = 16;
-        private static BitmapImage tileSet = new BitmapImage();
-        private static IDictionary<string, Tile> tileMap = new Dictionary<string, Tile>();
+        public const int TILE_WIDTH = 16;
+        public const int DRAW_SCALE = 2;
+
+        private static Bitmap tileSet;
+        private static IDictionary<string, Tile> tileMap;
 
         static Tiles() {
-            var img = @"pack://application:,,,/Resources/roguelikeDungeon_transparent.png";
-            tileSet.BeginInit();
-            tileSet.UriSource = new Uri(img);
-            tileSet.CacheOption = BitmapCacheOption.OnLoad;
-            tileSet.EndInit();
+            tileSet = new Bitmap("Resources/roguelikeDungeon_transparent.png");
+            tileMap = new Dictionary<string, Tile>();
 
-            tileMap.Add("empty", new Tile(8, 7));
-            tileMap.Add("wall", new Tile(8, 2));
-            tileMap.Add("floor", new Tile(6, 11));
-            tileMap.Add("player", new Tile(15, 17));
-            tileMap.Add("skeleton", new Tile(3, 2));
+            tileMap.Add("empty", new Tile(0, 0));
+            tileMap.Add("wall", new Tile(1, 3));
+            tileMap.Add("floor", new Tile(2, 0));
+            tileMap.Add("player", new Tile(27, 0));
+            tileMap.Add("skeleton", new Tile(29, 6));
         }
 
         public class Tile {
             public int x, y, w, h;
+            public Bitmap bitmap;
             public Tile(int i, int j) {
                 x = i * (TILE_WIDTH + 1);
                 y = j * (TILE_WIDTH + 1);
                 w = TILE_WIDTH;
                 h = TILE_WIDTH;
+                bitmap = tileSet.Clone(new Rectangle(x, y, w, h), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             }
         }
 
-        public static void DrawTile(Canvas context, IDrawable d, int x, int y) {
+        public static void DrawTile(Graphics graphics, IDrawable d, int x, int y) {
             Tile tile = tileMap[d.TileName];
 
-            var bodyImage = new Image {
-                Source = new CroppedBitmap(
-                    tileSet,
-                    new Int32Rect(tile.x, tile.y, tile.w, tile.h)),
-                Stretch = Stretch.None,
-                Width = TILE_WIDTH,
-                Height = TILE_WIDTH,
-            };
-
-            bodyImage.SetValue(Canvas.LeftProperty, ((double)x * TILE_WIDTH));
-            bodyImage.SetValue(Canvas.TopProperty, ((double)y * TILE_WIDTH));
-
-            context.Children.Add(bodyImage);
+            graphics.DrawImage(tile.bitmap, x * TILE_WIDTH * DRAW_SCALE, y * TILE_WIDTH * DRAW_SCALE, tile.w * DRAW_SCALE, tile.h * DRAW_SCALE);
         }
     }
 }
