@@ -2,9 +2,14 @@
 
 This is a simple tile-based RPG game.
 
+## Installing MonoGame
+
+MonoGame is a framework for simple C# games. Before opening the project, you have to install the newest version of MonoGame. You can find it here:
+http://community.monogame.net/t/monogame-3-7-1-release/11173
+
 ## Opening the project
 
-Open the project in VS Code. This is a .NET project.
+Open the project in Visual Studio. This is a .NET project.
 
 ## Architecture
 
