@@ -7,28 +7,28 @@
 
         public int X
         {
-            get => this.Cell.X;
+            get => Cell.X;
         }
 
         public int Y
         {
-            get => this.Cell.Y;
+            get => Cell.Y;
         }
 
         public abstract string TileName { get; }
 
         public Actor(Cell cell)
         {
-            this.Cell = cell;
-            this.Cell.Actor = this;
+            Cell = cell;
+            Cell.Actor = this;
         }
 
         public void Move(int dx, int dy)
         {
-            Cell nextCell = this.Cell.GetNeighbor(dx, dy);
-            this.Cell.Actor = null;
+            var nextCell = Cell.GetNeighbor(dx, dy);
+            Cell.Actor = null;
             nextCell.Actor = this;
-            this.Cell = nextCell;
+            Cell = nextCell;
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
 using Codecool.Quest.Models;
-using CodecoolQuest.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace CodecoolQuest
+namespace Codecool.Quest
 {
     /// <summary>
     /// This is the main type for your game.
@@ -16,25 +15,24 @@ namespace CodecoolQuest
 
         public SpriteBatch SpriteBatch;
 
-        private GraphicsDeviceManager _graphics;
         private GameMap _map;
         private TimeSpan _lastMoveTime;
 
-        public const double MOVE_INTERVAL = 0.1;
+        public const double MoveInterval = 0.1;
 
         public CodecoolQuestGame()
         {
             GameSingleton = this;
 
-            _graphics = new GraphicsDeviceManager(this);
+            using var graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
-            _graphics.ApplyChanges();
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
 
             _lastMoveTime = TimeSpan.Zero;
         }
@@ -70,9 +68,9 @@ namespace CodecoolQuest
                 return;
             }
 
-            TimeSpan deltaTime = gameTime.TotalGameTime - _lastMoveTime;
+            var deltaTime = gameTime.TotalGameTime - _lastMoveTime;
 
-            if (deltaTime.TotalSeconds < MOVE_INTERVAL)
+            if (deltaTime.TotalSeconds < MoveInterval)
                 return;
             
             if (keyboardState.IsKeyDown(Keys.Left))
@@ -113,11 +111,11 @@ namespace CodecoolQuest
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
 
-            for (int x = 0; x < _map.Width; x++)
+            for (var x = 0; x < _map.Width; x++)
             {
-                for (int y = 0; y < _map.Height; y++)
+                for (var y = 0; y < _map.Height; y++)
                 {
-                    Cell cell = _map.GetCell(x, y);
+                    var cell = _map.GetCell(x, y);
 
                     if (cell.Actor != null)
                     {

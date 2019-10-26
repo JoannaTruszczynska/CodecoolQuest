@@ -4,19 +4,19 @@ namespace Codecool.Quest.Models
 {
     public class GameMap
     {
-        public int Height { get; private set; }
-        public int Width { get; private set; }
+        public int Height { get; }
+        public int Width { get; }
         private readonly Cell[,] cells;
         public Player Player { get; set; }
 
         public GameMap(int width, int height, CellType defaultCellType)
         {
-            this.Width = width;
-            this.Height = height;
+            Width = width;
+            Height = height;
             cells = new Cell[width, height];
-            for (int x = 0; x < width; x++)
+            for (var x = 0; x < width; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (var y = 0; y < height; y++)
                 {
                     cells[x, y] = new Cell(this, x, y, defaultCellType);
                 }

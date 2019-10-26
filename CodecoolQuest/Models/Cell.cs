@@ -17,9 +17,9 @@ namespace Codecool.Quest.Models
         public Cell(GameMap gameMap, int x, int y, CellType cellType)
         {
             this.gameMap = gameMap;
-            this.X = x;
-            this.Y = y;
-            this.CellType = cellType;
+            X = x;
+            Y = y;
+            CellType = cellType;
         }
 
         public Cell GetNeighbor(int dx, int dy)

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodecoolQuest
+namespace Codecool.Quest
 {
 #if WINDOWS || LINUX
     /// <summary>

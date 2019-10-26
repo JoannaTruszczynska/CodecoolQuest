@@ -1,4 +1,1 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Projects/quest-csharp/CodecoolQuest/Content/ButtonNormal.png","D:/Projects/quest-csharp/CodecoolQuest/Content/bin/Windows/Content/ButtonNormal.xnb","TextureProcessor","Texture2DContent",212,32853,0,077764
-"D:/Projects/quest-csharp/CodecoolQuest/Content/Font.spritefont","D:/Projects/quest-csharp/CodecoolQuest/Content/bin/Windows/Content/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21521,0,1057248
-"D:/Projects/quest-csharp/CodecoolQuest/Content/roguelikeDungeon_transparent.png","D:/Projects/quest-csharp/CodecoolQuest/Content/bin/Windows/Content/roguelikeDungeon_transparent.xnb","TextureProcessor","Texture2DContent",26124,1179481,0,0209393

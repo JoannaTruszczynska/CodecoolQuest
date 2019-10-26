@@ -7,24 +7,24 @@ namespace Codecool.Quest.Models
     {
         public static GameMap LoadMap()
         {
-            StreamReader stream = new StreamReader("map.txt");
-            string firstline = stream.ReadLine();
-            string[] firstline_split = firstline.Split(' ');
+            using var stream = new StreamReader("map.txt");
+            var firstLine = stream.ReadLine();
+            var firstLineSplit = firstLine.Split(' ');
 
-            int width = int.Parse(firstline_split[0]);
-            int height = int.Parse(firstline_split[1]);
+            var width = int.Parse(firstLineSplit[0]);
+            var height = int.Parse(firstLineSplit[1]);
 
-            GameMap map = new GameMap(width, height, CellType.Empty);
+            var map = new GameMap(width, height, CellType.Empty);
 
-            for (int y = 0; y < height; y++)
+            for (var y = 0; y < height; y++)
             {
-                string line = stream.ReadLine();
+                var line = stream.ReadLine();
 
-                for (int x = 0; x < width; x++)
+                for (var x = 0; x < width; x++)
                 {
                     if (x < line.Length)
                     {
-                        Cell cell = map.GetCell(x, y);
+                        var cell = map.GetCell(x, y);
 
                         switch (line[x])
                         {

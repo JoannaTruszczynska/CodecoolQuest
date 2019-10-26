@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace CodecoolQuest.Models
+namespace Codecool.Quest.Models
 {
     public static class GUI
     {
@@ -28,8 +23,8 @@ namespace CodecoolQuest.Models
         /// <returns></returns>
         public static bool Button(Rectangle rect, string text)
         {
-            MouseState state = Mouse.GetState();
-            Color color = Color.White;
+            var state = Mouse.GetState();
+            var color = Color.White;
 
             if (rect.Contains(state.X, state.Y))
             {
