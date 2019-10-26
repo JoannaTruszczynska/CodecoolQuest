@@ -1,4 +1,5 @@
-﻿using Codecool.Quest.Models.Actors;
+﻿using System;
+using Codecool.Quest.Models.Actors;
 
 namespace Codecool.Quest.Models
 {
@@ -24,7 +25,7 @@ namespace Codecool.Quest.Models
 
         public Cell GetNeighbor(int dx, int dy)
         {
-            return _gameMap.GetCell(X + dx, Y + dy);
+            return _gameMap.GetCell(X + dx, Y + dy) ?? this;
         }
     }
 }

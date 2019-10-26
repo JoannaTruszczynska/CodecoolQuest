@@ -25,6 +25,11 @@ namespace Codecool.Quest.Models
 
         public Cell GetCell(int x, int y)
         {
+            if (x >= _cells.GetLength(0) || y >= _cells.GetLength(1) || x < 0 || y < 0)
+            {
+                return null;
+            }
+
             return _cells[x, y];
         }
     }
