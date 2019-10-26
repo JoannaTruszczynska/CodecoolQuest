@@ -5,19 +5,13 @@
         public Cell Cell { get; private set; }
         public int Health { get; set; } = 10;
 
-        public int X
-        {
-            get => Cell.X;
-        }
+        public int X => Cell.X;
 
-        public int Y
-        {
-            get => Cell.Y;
-        }
+        public int Y => Cell.Y;
 
         public abstract string TileName { get; }
 
-        public Actor(Cell cell)
+        protected Actor(Cell cell)
         {
             Cell = cell;
             Cell.Actor = this;

@@ -14,8 +14,8 @@ namespace Codecool.Quest
         [STAThread]
         static void Main()
         {
-            using (var game = new CodecoolQuestGame())
-                game.Run();
+            using var game = new CodecoolQuestGame();
+            game.Run();
         }
     }
 #endif

@@ -7,16 +7,16 @@ namespace Codecool.Quest.Models
         public Actor Actor { get; set; }
         public CellType CellType { get; set; }
 
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public int X { get; }
+        public int Y { get; }
 
         public string TileName => CellType.ToString("g").ToLowerInvariant();
 
-        GameMap gameMap;
+        private readonly GameMap _gameMap;
 
         public Cell(GameMap gameMap, int x, int y, CellType cellType)
         {
-            this.gameMap = gameMap;
+            _gameMap = gameMap;
             X = x;
             Y = y;
             CellType = cellType;
@@ -24,7 +24,7 @@ namespace Codecool.Quest.Models
 
         public Cell GetNeighbor(int dx, int dy)
         {
-            return gameMap.GetCell(X + dx, Y + dy);
+            return _gameMap.GetCell(X + dx, Y + dy);
         }
     }
 }
