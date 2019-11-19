@@ -8,10 +8,13 @@ namespace Codecool.Quest.Models
         public Actor Actor { get; set; }
         public CellType CellType { get; set; }
 
+        public bool CanIMoveHere { get; set; }
+
         public int X { get; }
         public int Y { get; }
 
         public string TileName => CellType.ToString("g").ToLowerInvariant();
+
 
         private readonly GameMap _gameMap;
 

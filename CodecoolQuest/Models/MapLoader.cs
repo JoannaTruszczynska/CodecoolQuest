@@ -1,5 +1,6 @@
 ﻿using Codecool.Quest.Models.Actors;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Codecool.Quest.Models
 {
@@ -29,32 +30,37 @@ namespace Codecool.Quest.Models
                         switch (line[x])
                         {
                             case ' ':
-                            {
-                                cell.CellType = CellType.Empty;
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Empty;
+                                    cell.CanIMoveHere = false;
+                                    break;
+                                }
                             case '#':
-                            {
-                                cell.CellType = CellType.Wall;
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Wall;
+                                    cell.CanIMoveHere = false;
+                                    break;
+                                }
                             case '.':
-                            {
-                                cell.CellType = CellType.Floor;
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Floor;
+                                    cell.CanIMoveHere = true;
+                                    break;
+                                }
                             case 's':
-                            {
-                                cell.CellType = CellType.Floor;
-                                new Skeleton(cell);
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Floor;
+                                    cell.CanIMoveHere = false;
+                                    new Skeleton(cell);
+                                    break;
+                                }
                             case '@':
-                            {
-                                cell.CellType = CellType.Floor;
-                                map.Player = new Player(cell);
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Floor;
+                                    cell.CanIMoveHere = true;
+                                    map.Player = new Player(cell);
+                                    break;
+                                }
                         }
                     }
                 }

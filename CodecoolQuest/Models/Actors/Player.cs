@@ -4,6 +4,7 @@
     {
         public override string TileName { get; } = "player";
 
+
         public Player(Cell cell) : base(cell)
         {
         }

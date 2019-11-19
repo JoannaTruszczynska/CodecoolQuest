@@ -4,9 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Codecool/CodecoolBase/quest-csharp/CodecoolQuest/Content/ButtonNormal.png</File>
-    <File>C:/Codecool/CodecoolBase/quest-csharp/CodecoolQuest/Content/Font.spritefont</File>
-    <File>C:/Codecool/CodecoolBase/quest-csharp/CodecoolQuest/Content/roguelikeDungeon_transparent.png</File>
+    <File>C:/Users/upc-PC/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/ButtonNormal.png</File>
+    <File>C:/Users/upc-PC/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/Font.spritefont</File>
+    <File>C:/Users/upc-PC/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/roguelikeDungeon_transparent.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

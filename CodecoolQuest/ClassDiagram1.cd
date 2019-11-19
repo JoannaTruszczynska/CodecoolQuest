@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Codecool.Quest.Models.Actors.Actor">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAYBA=</HashCode>
+      <FileName>Models\Actors\Actor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Codecool.Quest.Models.Actors.Player">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\Actors\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.Actors.Skeleton">
+    <Position X="7" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\Actors\Skeleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.Cell" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAYBA=</HashCode>
+      <FileName>Models\Cell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Codecool.Quest.Models.GameMap">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAABAAAAAABAAAAAEAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\GameMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.GUI">
+    <Position X="13" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAgAAAAAAAAAAAAAAAAAAAAICAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\GUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.MapLoader">
+    <Position X="14.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MapLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.Tiles">
+    <Position X="11.25" Y="1.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Codecool.Quest.Models.Tiles.Tile" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Tiles.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAACIAAAAAIQAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Tiles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Program">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.CodecoolQuestGame">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABAACAgAAAAAAAAAAAAAAAAAAQEBAAAAAAAQ=</HashCode>
+      <FileName>CodecoolQuestGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Codecool.Quest.Models.IDrawable">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Codecool.Quest.Models.CellType">
+    <Position X="14.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAIAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CellType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

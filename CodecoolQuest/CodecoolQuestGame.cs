@@ -45,7 +45,7 @@ namespace Codecool.Quest
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             GUI.Load();
             Tiles.Load();
 
@@ -72,29 +72,56 @@ namespace Codecool.Quest
 
             if (deltaTime.TotalSeconds < MoveInterval)
                 return;
-            
+
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 // Move left
-                _map.Player.Move(-1, 0);
+
+                var neigbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
+
+                if (neigbourCell.CanIMoveHere)
+                {
+                    _map.Player.Move(-1, 0);
+                }
                 _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 // Move right
-                _map.Player.Move(1, 0);
+
+                var neigbourCell = _map.Player.Cell.GetNeighbor(1, 0);
+
+                if (neigbourCell.CanIMoveHere)
+                {
+                    _map.Player.Move(1, 0);
+                }
+
                 _lastMoveTime = gameTime.TotalGameTime;
+
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
                 // Move up
-                _map.Player.Move(0, -1);
+
+                var neigbourCell = _map.Player.Cell.GetNeighbor(0, -1);
+
+                if (neigbourCell.CanIMoveHere)
+                {
+                    _map.Player.Move(0, -1);
+                }
+
                 _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
                 // Move down
-                _map.Player.Move(0, 1);
+                var neigbourCell = _map.Player.Cell.GetNeighbor(0, 1);
+
+                if (neigbourCell.CanIMoveHere)
+                {
+                    _map.Player.Move(0, 1);
+                }
+
                 _lastMoveTime = gameTime.TotalGameTime;
             }
 

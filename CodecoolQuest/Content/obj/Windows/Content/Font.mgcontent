@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Codecool/CodecoolBase/quest-csharp/CodecoolQuest/Content/Font.spritefont</SourceFile>
-  <SourceTime>2019-10-26T02:00:34.9085012+02:00</SourceTime>
-  <DestFile>C:/Codecool/CodecoolBase/quest-csharp/CodecoolQuest/Content/bin/Windows/Content/Font.xnb</DestFile>
-  <DestTime>2019-10-26T02:08:43.3755461+02:00</DestTime>
+  <SourceFile>C:/Users/upc-PC/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/Font.spritefont</SourceFile>
+  <SourceTime>2019-11-19T10:26:41.2695237+01:00</SourceTime>
+  <DestFile>C:/Users/upc-PC/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/bin/Windows/Content/Font.xnb</DestFile>
+  <DestTime>2019-11-19T10:28:28.3361748+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2019-10-15T21:28:30+02:00</ImporterTime>
+  <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2019-10-15T21:28:30+02:00</ProcessorTime>
+  <ProcessorTime>2018-12-08T17:35:54+01:00</ProcessorTime>
   <Parameters>
     <Key>PremultiplyAlpha</Key>
     <Value>True</Value>
