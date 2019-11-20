@@ -4,6 +4,7 @@
     {
         public Cell Cell { get; private set; }
         public int Health { get; set; } = 10;
+        public abstract int AttackStrength { get; set; }
 
         public int X => Cell.X;
 
@@ -24,5 +25,5 @@
             nextCell.Actor = this;
             Cell = nextCell;
         }
-    }
+        }
 }

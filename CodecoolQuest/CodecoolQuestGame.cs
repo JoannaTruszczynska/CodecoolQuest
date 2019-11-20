@@ -3,6 +3,8 @@ using Codecool.Quest.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using Codecool.Quest.Models.Actors;
 
 namespace Codecool.Quest
 {
@@ -83,8 +85,24 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(-1, 0);
                 }
+
+                if (neighbourCell.CanIFight)
+                {
+                    for ( int i = 0; i < MapLoader.LoadMap().skeletonList.Count; i++)
+                    {
+                        if (neighbourCell.X == MapLoader.LoadMap().skeletonList[i].X && neighbourCell.Y == MapLoader.LoadMap().skeletonList[i].Y)
+                        {
+                            var result = Fight(_map.Player.Health, MapLoader.LoadMap().skeletonList[i].Health,
+                                _map.Player.AttackStrength, MapLoader.LoadMap().skeletonList[i].AttackStrength);
+                            _map.Player.Health = result[0];
+                            MapLoader.LoadMap().skeletonList[i].Health =  result[1];
+                            Console.WriteLine("health should be " + result[1] + " " + "skeleton health is " + MapLoader.LoadMap().skeletonList[i].Health);
+                        }
+                    }
+                }
+
                 _lastMoveTime = gameTime.TotalGameTime;
-            }
+            }   
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 // Move right
@@ -127,7 +145,21 @@ namespace Codecool.Quest
 
             base.Update(gameTime);
         }
+       
+        public List<int> Fight(int attackerHealth, int defenderHealth, int attackerAttackStrength,
+            int defenderAttackStrength)
+        {
+            List<int> health = new List<int>();
+            attackerHealth = attackerHealth - defenderAttackStrength;
+            defenderHealth = defenderHealth - attackerAttackStrength;
 
+            health.Add(attackerHealth);
+            health.Add(defenderHealth);
+
+
+            return health;
+
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using Codecool.Quest.Models.Actors;
+﻿using System.Collections.Generic;
+using Codecool.Quest.Models.Actors;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -16,6 +17,8 @@ namespace Codecool.Quest.Models
             var height = int.Parse(firstLineSplit[1]);
 
             var map = new GameMap(width, height, CellType.Empty);
+           
+            
 
             for (var y = 0; y < height; y++)
             {
@@ -33,46 +36,54 @@ namespace Codecool.Quest.Models
                                 {
                                     cell.CellType = CellType.Empty;
                                     cell.CanIMoveHere = false;
+                                    cell.CanIFight = false;
                                     break;
                                 }
                             case '#':
                                 {
                                     cell.CellType = CellType.Wall;
                                     cell.CanIMoveHere = false;
+                                    cell.CanIFight = false;
                                     break;
                                 }
                             case '.':
                                 {
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = true;
+                                    cell.CanIFight = false;
                                     break;
                                 }
                             case 's':
                                 {
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = false;
-                                    new Skeleton(cell);
+                                    cell.CanIFight = true;
+                                    map.Skeleton = new Skeleton(cell);
+                                    map.skeletonList.Add(map.Skeleton);
                                     break;
                                 }
                             case '@':
                                 {
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = true;
+                                    cell.CanIFight = false;
                                     map.Player = new Player(cell);
                                     break;
                                 }
                             case 'K':
-                            {
-                                cell.CellType = CellType.Key;
-                                cell.CanIMoveHere = true;
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Key;
+                                    cell.CanIMoveHere = true;
+                                    cell.CanIFight = false;
+                                    break;
+                                }
                             case 'D':
-                            {
-                                cell.CellType = CellType.Door;
-                                cell.CanIMoveHere = true;
-                                break;
-                            }
+                                {
+                                    cell.CellType = CellType.Door;
+                                    cell.CanIMoveHere = true;
+                                    cell.CanIFight = false;
+                                    break;
+                                }
 
                         }
                     }
