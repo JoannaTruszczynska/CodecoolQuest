@@ -1,6 +1,7 @@
 ﻿using Codecool.Quest.Models.Actors;
 using System.IO;
 using System.Runtime.InteropServices;
+using Codecool.Quest.Models.Things;
 
 namespace Codecool.Quest.Models
 {
@@ -61,15 +62,23 @@ namespace Codecool.Quest.Models
                                     map.Player = new Player(cell);
                                     break;
                                 }
-                            case 'K':
+                            case 'k':
                             {
-                                cell.CellType = CellType.Key;
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                map.Key = new Key(cell);
+                                
+                                break;
+                            }
+                            case 'd':
+                            {
+                                cell.CellType = CellType.Door;
                                 cell.CanIMoveHere = true;
                                 break;
                             }
-                            case 'D':
+                            case 't':
                             {
-                                cell.CellType = CellType.Door;
+                                cell.CellType = CellType.Sword;
                                 cell.CanIMoveHere = true;
                                 break;
                             }

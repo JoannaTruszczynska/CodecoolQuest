@@ -23,7 +23,8 @@ namespace Codecool.Quest.Models
                 {"player", new Tile(27, 0)},
                 {"skeleton", new Tile(29, 6)},
                 {"key", new Tile(17, 23)},
-                {"door", new Tile(6, 17)}
+                {"door", new Tile(6, 17)},
+                {"sword", new Tile(4, 30)},
             };
 
         }
@@ -43,15 +44,15 @@ namespace Codecool.Quest.Models
             var tile = _tileMap[d.TileName];
 
             batch.Draw(
-                _tileSet, 
+                _tileSet,
                 new Vector2(
-                    x * TileWidth * DrawScale, 
-                    y * TileWidth * DrawScale), 
-                tile.Rect, 
-                Color.White, 
-                0.0f, 
-                Vector2.One, 
-                Vector2.One * DrawScale, 
+                    x * TileWidth * DrawScale,
+                    y * TileWidth * DrawScale),
+                tile.Rect,
+                Color.White,
+                0.0f,
+                Vector2.One,
+                Vector2.One * DrawScale,
                 SpriteEffects.None, 0.0f);
         }
     }
