@@ -18,7 +18,7 @@ namespace Codecool.Quest.Models
 
             var map = new GameMap(width, height, CellType.Empty);
            
-            
+ //a           
 
             for (var y = 0; y < height; y++)
             {
