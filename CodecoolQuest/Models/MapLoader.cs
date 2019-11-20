@@ -63,26 +63,28 @@ namespace Codecool.Quest.Models
                                     break;
                                 }
                             case 'k':
+                                {
+                                    cell.CellType = CellType.Floor;
+                                    cell.CanIMoveHere = true;
+                                    Item key = new Key(cell);
+                                    map.Items.Add(key);
+                                    break;
+                                }
+                            case 'd':
+                                {
+                                    cell.CellType = CellType.Floor;
+                                    Item door = new Door(cell, 1);
+                                    map.Items.Add(door);
+                                    break;
+                                }
+                            case 't':
                             {
                                 cell.CellType = CellType.Floor;
                                 cell.CanIMoveHere = true;
-                                map.Key = new Key(cell);
-                                
+                                Item sword = new Sword(cell);
+                                map.Items.Add(sword);
                                 break;
                             }
-                            case 'd':
-                            {
-                                cell.CellType = CellType.Door;
-                                cell.CanIMoveHere = true;
-                                break;
-                            }
-                            case 't':
-                            {
-                                cell.CellType = CellType.Sword;
-                                cell.CanIMoveHere = true;
-                                break;
-                            }
-
                         }
                     }
                 }

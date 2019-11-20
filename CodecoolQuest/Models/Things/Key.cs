@@ -15,5 +15,8 @@ namespace Codecool.Quest.Models.Things
         }
 
         public override string TileName { get; } = "key";
+        public override string Type { get; } = "item";
+
+        public string Name { get; } = "blueKey";
     }
 }

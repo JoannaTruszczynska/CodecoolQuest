@@ -1,5 +1,6 @@
 ﻿using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
+using System.Collections.Generic;
 
 namespace Codecool.Quest.Models
 {
@@ -9,7 +10,8 @@ namespace Codecool.Quest.Models
         public int Width { get; }
         private readonly Cell[,] _cells;
         public Player Player { get; set; }
-        public Key Key { get; set; }
+
+        public List<Item> Items = new List<Item>();
 
         public GameMap(int width, int height, CellType defaultCellType)
         {

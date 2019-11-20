@@ -1,19 +1,28 @@
-﻿namespace Codecool.Quest.Models.Actors
-{
-    public class Player : Actor, IInventory
-    {
-        public override string TileName { get; } = "player";
-        public string[] Weapons { get; set; }
-        public string[] Items { get; set; }
+﻿using System.Collections.Generic;
+using Codecool.Quest.Models.Things;
 
-        public void GetItem()
+namespace Codecool.Quest.Models.Actors
+
+{
+    public class Player : Actor
+    {
+        public Player(Cell cell) : base(cell)
         {
+        }
+        public override string TileName { get; } = "player";
+        public Item Weapon { get; set; }
+        
+        private List<Item> _items = new List<Item>();
+
+        public List<Item> GetItems()
+        {
+            return _items;
 
         }
 
-
-        public Player(Cell cell) : base(cell)
+        public void SetItem(Item item)
         {
+            _items.Add(item);
         }
     }
 }

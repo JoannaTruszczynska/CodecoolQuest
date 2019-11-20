@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Codecool.Quest.Models;
+using Codecool.Quest.Models.Actors;
+using Codecool.Quest.Models.Things;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -60,6 +64,7 @@ namespace Codecool.Quest
         protected override void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
+            var neighborCell = _map.Player.Cell.GetNeighbor(0, 0);
 
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
@@ -76,10 +81,10 @@ namespace Codecool.Quest
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 // Move left
+                CheckNextCell(-1, 0);
+                neighborCell = _map.Player.Cell.GetNeighbor(-1, 0);
 
-                var neighbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
-
-                if (neighbourCell.CanIMoveHere)
+                if (neighborCell.CanIMoveHere)
                 {
                     _map.Player.Move(-1, 0);
                 }
@@ -88,10 +93,10 @@ namespace Codecool.Quest
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 // Move right
+                CheckNextCell(1, 0);
+                neighborCell = _map.Player.Cell.GetNeighbor(1, 0);
 
-                var neighbourCell = _map.Player.Cell.GetNeighbor(1, 0);
-
-                if (neighbourCell.CanIMoveHere)
+                if (neighborCell.CanIMoveHere)
                 {
                     _map.Player.Move(1, 0);
                 }
@@ -102,10 +107,10 @@ namespace Codecool.Quest
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
                 // Move up
+                CheckNextCell(0, -1);
+                neighborCell = _map.Player.Cell.GetNeighbor(0, -1);
 
-                var neighbourCell = _map.Player.Cell.GetNeighbor(0, -1);
-
-                if (neighbourCell.CanIMoveHere)
+                if (neighborCell.CanIMoveHere)
                 {
                     _map.Player.Move(0, -1);
                 }
@@ -114,11 +119,13 @@ namespace Codecool.Quest
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
+                CheckNextCell(0,1);
                 // Move down
-                var neighbourCell = _map.Player.Cell.GetNeighbor(0, 1);
-
-                if (neighbourCell.CanIMoveHere)
+                neighborCell = _map.Player.Cell.GetNeighbor(0, 1);
+                
+                if (neighborCell.CanIMoveHere)
                 {
+
                     _map.Player.Move(0, 1);
                 }
 
@@ -126,8 +133,43 @@ namespace Codecool.Quest
             }
 
 
-
             base.Update(gameTime);
+        }
+
+        private void CheckNextCell(int x, int y)
+        {
+            var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
+            
+            var matchedItem = _map.Items.Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
+             
+             if (matchedItem != null)
+             {
+                 switch (matchedItem.Type)
+                 {
+                    case "item":
+                        _map.Player.SetItem(matchedItem);
+                        matchedItem.Disable();
+                        _map.Items.Remove(matchedItem);
+                        break;
+
+                    case "weapon":
+                        _map.Player.Weapon = matchedItem;
+                        matchedItem.Disable();
+                        _map.Items.Remove(matchedItem);
+                        break;
+
+                    case "door":
+                        Console.WriteLine("door");
+                        List<Key> keys = new List<Key>();
+                        foreach (var item in _map.Player.GetItems())
+                        {
+                            keys.Add((Key)item);
+                        }
+                        Door door = (Door)_map.Items.Find(item => item.Type == "door");
+                        door.KeyLock(keys);
+                        break;
+                 }
+             } 
         }
 
         /// <summary>
@@ -150,9 +192,9 @@ namespace Codecool.Quest
                     {
                         Tiles.DrawTile(SpriteBatch, cell.Actor, x, y);
                     }
-                    else if (cell.Thing != null)
+                    else if (cell.Item != null)
                     {
-                        Tiles.DrawTile(SpriteBatch, cell.Thing, x, y);
+                        Tiles.DrawTile(SpriteBatch, cell.Item, x, y);
                     }
                     else
                     {
@@ -165,5 +207,6 @@ namespace Codecool.Quest
 
             base.Draw(gameTime);
         }
+
     }
 }
