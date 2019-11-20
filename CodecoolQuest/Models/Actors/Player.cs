@@ -3,8 +3,14 @@
     public class Player : Actor, IInventory
     {
         public override string TileName { get; } = "player";
-        public string[] Weapons { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public string[] Items { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public string[] Weapons { get; set; }
+        public string[] Items { get; set; }
+
+        public void GetItem()
+        {
+
+        }
+
 
         public override int AttackStrength { get; set; } = 5;
 
