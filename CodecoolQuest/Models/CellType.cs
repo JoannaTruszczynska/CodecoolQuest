@@ -6,6 +6,7 @@
         Floor,
         Wall,
         Key,
-        Door
+        Door,
+        Sword
     }
 }

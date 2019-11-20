@@ -143,6 +143,8 @@ namespace Codecool.Quest
                 _lastMoveTime = gameTime.TotalGameTime;
             }
 
+
+
             base.Update(gameTime);
         }
        
@@ -179,6 +181,10 @@ namespace Codecool.Quest
                     if (cell.Actor != null)
                     {
                         Tiles.DrawTile(SpriteBatch, cell.Actor, x, y);
+                    }
+                    else if (cell.Thing != null)
+                    {
+                        Tiles.DrawTile(SpriteBatch, cell.Thing, x, y);
                     }
                     else
                     {
