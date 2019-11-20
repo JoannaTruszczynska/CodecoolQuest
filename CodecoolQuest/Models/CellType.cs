@@ -4,6 +4,8 @@
     {
         Empty,
         Floor,
-        Wall
+        Wall,
+        Key,
+        Door
     }
 }

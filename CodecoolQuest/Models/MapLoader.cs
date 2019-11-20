@@ -61,6 +61,19 @@ namespace Codecool.Quest.Models
                                     map.Player = new Player(cell);
                                     break;
                                 }
+                            case 'K':
+                            {
+                                cell.CellType = CellType.Key;
+                                cell.CanIMoveHere = true;
+                                break;
+                            }
+                            case 'D':
+                            {
+                                cell.CellType = CellType.Door;
+                                cell.CanIMoveHere = true;
+                                break;
+                            }
+
                         }
                     }
                 }

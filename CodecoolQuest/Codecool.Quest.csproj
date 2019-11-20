@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CodecoolQuestGame.cs" />
+    <Compile Include="IInventory.cs" />
     <Compile Include="Models\Actors\Actor.cs" />
     <Compile Include="Models\Actors\Player.cs" />
     <Compile Include="Models\Actors\Skeleton.cs" />

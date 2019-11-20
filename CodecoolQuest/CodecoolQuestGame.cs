@@ -77,9 +77,9 @@ namespace Codecool.Quest
             {
                 // Move left
 
-                var neigbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
+                var neighbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
 
-                if (neigbourCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(-1, 0);
                 }
@@ -89,9 +89,9 @@ namespace Codecool.Quest
             {
                 // Move right
 
-                var neigbourCell = _map.Player.Cell.GetNeighbor(1, 0);
+                var neighbourCell = _map.Player.Cell.GetNeighbor(1, 0);
 
-                if (neigbourCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(1, 0);
                 }
@@ -103,9 +103,9 @@ namespace Codecool.Quest
             {
                 // Move up
 
-                var neigbourCell = _map.Player.Cell.GetNeighbor(0, -1);
+                var neighbourCell = _map.Player.Cell.GetNeighbor(0, -1);
 
-                if (neigbourCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(0, -1);
                 }
@@ -115,9 +115,9 @@ namespace Codecool.Quest
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
                 // Move down
-                var neigbourCell = _map.Player.Cell.GetNeighbor(0, 1);
+                var neighbourCell = _map.Player.Cell.GetNeighbor(0, 1);
 
-                if (neigbourCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(0, 1);
                 }

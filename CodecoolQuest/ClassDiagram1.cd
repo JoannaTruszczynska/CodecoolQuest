@@ -11,9 +11,10 @@
   <Class Name="Codecool.Quest.Models.Actors.Player">
     <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Models\Actors\Player.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Codecool.Quest.Models.Actors.Skeleton">
     <Position X="7" Y="4.5" Width="1.5" />
@@ -25,7 +26,7 @@
   <Class Name="Codecool.Quest.Models.Cell" BaseTypeListCollapsed="true">
     <Position X="9.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIIAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAYBA=</HashCode>
+      <HashCode>AIIAAAIAAAAAgAAAAAAAAAAAAAAAAAQAAAAAAAAAYBA=</HashCode>
       <FileName>Models\Cell.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -86,10 +87,17 @@
       <FileName>Models\IDrawable.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Codecool.Quest.IInventory">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>IInventory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="Codecool.Quest.Models.CellType">
     <Position X="14.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgAAAIAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAwAAAIAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Models\CellType.cs</FileName>
     </TypeIdentifier>
   </Enum>

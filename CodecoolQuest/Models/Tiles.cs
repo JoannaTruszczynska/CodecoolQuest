@@ -21,7 +21,9 @@ namespace Codecool.Quest.Models
                 {"wall", new Tile(1, 3)},
                 {"floor", new Tile(2, 0)},
                 {"player", new Tile(27, 0)},
-                {"skeleton", new Tile(29, 6)}
+                {"skeleton", new Tile(29, 6)},
+                {"key", new Tile(17, 23)},
+                {"door", new Tile(6, 17)}
             };
 
         }
