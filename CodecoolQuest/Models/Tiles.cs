@@ -20,15 +20,16 @@ namespace Codecool.Quest.Models
                 {"empty", new Tile(0, 0)},
                 {"wall", new Tile(1, 3)},
                 {"floor", new Tile(2, 0)},
-                {"player", new Tile(27, 0)},
+                {"player", new Tile(25, 0)},
                 {"skeleton", new Tile(29, 6)},
                 {"key", new Tile(17, 23)},
                 {"door", new Tile(6, 17)},
                 {"sword", new Tile(4, 30)},
+                {"armedplayer", new Tile(27, 0)}
             };
 
         }
-
+               
         public class Tile
         {
             public Rectangle Rect;

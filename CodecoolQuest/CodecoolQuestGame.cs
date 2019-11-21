@@ -172,6 +172,7 @@ namespace Codecool.Quest
                         break;
 
                     case "weapon":
+                        _map.Player.TileName = "armedplayer";
                         _map.Player.Weapon = matchedItem;
                         matchedItem.Disable();
                         _map.GetItems().Remove(matchedItem);

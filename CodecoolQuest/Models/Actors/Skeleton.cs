@@ -2,7 +2,7 @@
 {
     public class Skeleton : Actor
     {
-        public override string TileName { get; } = "skeleton";
+        public override string TileName { get; set; } = "skeleton";
 
         public override int AttackStrength { get; set; } = 2;
 

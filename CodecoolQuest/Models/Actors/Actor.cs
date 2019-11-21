@@ -13,7 +13,7 @@ namespace Codecool.Quest.Models.Actors
 
         public int Y => Cell.Y;
 
-        public abstract string TileName { get; }
+        public abstract string TileName { get; set; }
 
         protected Actor(Cell cell)
         {

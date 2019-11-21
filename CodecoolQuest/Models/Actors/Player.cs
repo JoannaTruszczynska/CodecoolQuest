@@ -11,7 +11,7 @@ namespace Codecool.Quest.Models.Actors
         }
 
         public override int AttackStrength { get; set; } = 5;
-        public override string TileName { get; } = "player";
+        public override string TileName { get; set; } = "player";
         public Item Weapon { get; set; }
         
         private List<Item> _items = new List<Item>();
