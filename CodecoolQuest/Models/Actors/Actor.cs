@@ -25,5 +25,10 @@
             nextCell.Actor = this;
             Cell = nextCell;
         }
+
+        public void TakeDamage (int damageValue)
+        {
+            Health -= damageValue;
+        }
         }
 }
