@@ -45,9 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CodecoolQuestGame.cs" />
+    <Compile Include="Models\Things\Item.cs" />
     <Compile Include="Models\Things\Door.cs" />
-    <Compile Include="IInventory.cs" />
-    <Compile Include="Item.cs" />
     <Compile Include="Models\Things\Key.cs" />
     <Compile Include="Models\Actors\Actor.cs" />
     <Compile Include="Models\Actors\Player.cs" />
@@ -62,7 +61,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Things\Sword.cs" />
-    <Compile Include="Models\Things\Thing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

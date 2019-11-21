@@ -7,11 +7,11 @@ namespace Codecool.Quest.Models
     public class Cell : IDrawable
     {
         public Actor Actor { get; set; }
-        public Thing Thing { get; set; }
+        public Item Item { get; set; }
         public CellType CellType { get; set; }
 
         public bool CanIMoveHere { get; set; }
-        public bool CanIFight { get; set; }
+
         public int X { get; }
         public int Y { get; }
 
