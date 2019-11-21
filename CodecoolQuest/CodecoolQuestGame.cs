@@ -64,7 +64,7 @@ namespace Codecool.Quest
         protected override void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
-            var neighborCell = _map.Player.Cell.GetNeighbor(0, 0);
+            var neighbourCell = _map.Player.Cell.GetNeighbor(0, 0);
 
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
@@ -82,29 +82,16 @@ namespace Codecool.Quest
             {
                 // Move left
                 CheckNextCell(-1, 0);
-                neighborCell = _map.Player.Cell.GetNeighbor(-1, 0);
+                neighbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
 
-                if (neighborCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(-1, 0);
                 }
 
-                if (neighborCell.CanIFight)
+                if (neighbourCell.CanIFight)
                 {
-                    neighborCell.Actor.TakeDamage(5);
-
-                    if (neighborCell.Actor.Health > 0)
-                    {
-                        _map.Player.TakeDamage(2);
-                    }
-
-                    else
-                    {
-                        neighbourCell.Actor = null;
-                        neighbourCell.CanIFight = false;
-                        neighbourCell.CanIMoveHere = true;
-                        neighbourCell.CellType = CellType.Floor;
-                    }
+                    _map.Player.Fight(neighbourCell, _map);
                 }
 
 
@@ -114,28 +101,15 @@ namespace Codecool.Quest
             {
                 // Move right
                 CheckNextCell(1, 0);
-                neighborCell = _map.Player.Cell.GetNeighbor(1, 0);
+                neighbourCell = _map.Player.Cell.GetNeighbor(1, 0);
 
-                if (neighborCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(1, 0);
                 }
                 if (neighbourCell.CanIFight)
                 {
-                    neighbourCell.Actor.TakeDamage(5);
-
-                    if (neighbourCell.Actor.Health > 0)
-                    {
-                        _map.Player.TakeDamage(2);
-                    }
-
-                    else
-                    {
-                        neighbourCell.Actor = null;
-                        neighbourCell.CanIFight = false;
-                        neighbourCell.CanIMoveHere = true;
-                        neighbourCell.CellType = CellType.Floor;
-                    }
+                    _map.Player.Fight(neighbourCell, _map);
                 }
 
                 _lastMoveTime = gameTime.TotalGameTime;
@@ -145,28 +119,15 @@ namespace Codecool.Quest
             {
                 // Move up
                 CheckNextCell(0, -1);
-                neighborCell = _map.Player.Cell.GetNeighbor(0, -1);
+                neighbourCell = _map.Player.Cell.GetNeighbor(0, -1);
 
-                if (neighborCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(0, -1);
                 }
                 if (neighbourCell.CanIFight)
                 {
-                    neighbourCell.Actor.TakeDamage(5);
-
-                    if (neighbourCell.Actor.Health > 0)
-                    {
-                        _map.Player.TakeDamage(2);
-                    }
-
-                    else
-                    {
-                        neighbourCell.Actor = null;
-                        neighbourCell.CanIFight = false;
-                        neighbourCell.CanIMoveHere = true;
-                        neighbourCell.CellType = CellType.Floor;
-                    }
+                    _map.Player.Fight(neighbourCell, _map);
                 }
 
                 _lastMoveTime = gameTime.TotalGameTime;
@@ -175,29 +136,16 @@ namespace Codecool.Quest
             {
                 CheckNextCell(0,1);
                 // Move down
-                neighborCell = _map.Player.Cell.GetNeighbor(0, 1);
+                neighbourCell = _map.Player.Cell.GetNeighbor(0, 1);
                 
-                if (neighborCell.CanIMoveHere)
+                if (neighbourCell.CanIMoveHere)
                 {
 
                     _map.Player.Move(0, 1);
                 }
                 if (neighbourCell.CanIFight)
                 {
-                    neighbourCell.Actor.TakeDamage(5);
-
-                    if (neighbourCell.Actor.Health > 0)
-                    {
-                        _map.Player.TakeDamage(2);
-                    }
-
-                    else
-                    {
-                        neighbourCell.Actor = null;
-                        neighbourCell.CanIFight = false;
-                        neighbourCell.CanIMoveHere = true;
-                        neighbourCell.CellType = CellType.Floor;
-                    }
+                    _map.Player.Fight(neighbourCell, _map);
                 }
 
                 _lastMoveTime = gameTime.TotalGameTime;

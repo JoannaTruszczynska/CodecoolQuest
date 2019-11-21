@@ -10,7 +10,7 @@ namespace Codecool.Quest.Models.Actors
         {
         }
 
-        public override int AttackStrength { get; set; }
+        public override int AttackStrength { get; set; } = 5;
         public override string TileName { get; } = "player";
         public Item Weapon { get; set; }
         
@@ -26,5 +26,6 @@ namespace Codecool.Quest.Models.Actors
         {
             _items.Add(item);
         }
+        
     }
 }
