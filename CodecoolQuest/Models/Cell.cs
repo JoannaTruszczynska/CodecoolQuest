@@ -11,6 +11,7 @@ namespace Codecool.Quest.Models
         public CellType CellType { get; set; }
 
         public bool CanIMoveHere { get; set; }
+        public bool CanIFight { get; set; }
 
         public int X { get; }
         public int Y { get; }

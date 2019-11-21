@@ -2,6 +2,7 @@
 using Codecool.Quest.Models.Actors;
 using System.IO;
 using System.Runtime.InteropServices;
+using Codecool.Quest.Models.Things;
 
 namespace Codecool.Quest.Models
 {
@@ -73,14 +74,14 @@ namespace Codecool.Quest.Models
                                 cell.CellType = CellType.Floor;
                                 cell.CanIMoveHere = true;
                                 Item key = new Key(cell);
-                                map.Items.Add(key);
+                                map.SetItem(key);
                                 break;
                             }
                             case 'd':
                             {
                                 cell.CellType = CellType.Floor;
                                 Item door = new Door(cell, 1);
-                                map.Items.Add(door);
+                                map.SetItem(door);
                                 break;
                             }
                             case 't':
@@ -88,7 +89,7 @@ namespace Codecool.Quest.Models
                                 cell.CellType = CellType.Floor;
                                 cell.CanIMoveHere = true;
                                 Item sword = new Sword(cell);
-                                map.Items.Add(sword);
+                                map.SetItem(sword);
                                 break;
                             }
                         }

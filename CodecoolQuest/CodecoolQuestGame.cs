@@ -89,18 +89,18 @@ namespace Codecool.Quest
                     _map.Player.Move(-1, 0);
                 }
 
-                if (neighbourCell.CanIFight)
+                if (neighborCell.CanIFight)
                 {
-                    neighbourCell.Actor.TakeDamage(5);
+                    neighborCell.Actor.TakeDamage(5);
 
-                    if (neighbourCell.Actor.Health > 0)
+                    if (neighborCell.Actor.Health > 0)
                     {
                         _map.Player.TakeDamage(2);
                     }
                     
                     else
                     {
-                        neighbourCell.Actor = null;
+                        neighborCell.Actor = null;
                        
                        
                     }
@@ -160,7 +160,7 @@ namespace Codecool.Quest
         {
             var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
             
-            var matchedItem = _map.Items.Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
+            var matchedItem = _map.GetItems().Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
              
              if (matchedItem != null)
              {
@@ -169,13 +169,13 @@ namespace Codecool.Quest
                     case "item":
                         _map.Player.SetItem(matchedItem);
                         matchedItem.Disable();
-                        _map.Items.Remove(matchedItem);
+                        _map.GetItems().Remove(matchedItem);
                         break;
 
                     case "weapon":
                         _map.Player.Weapon = matchedItem;
                         matchedItem.Disable();
-                        _map.Items.Remove(matchedItem);
+                        _map.GetItems().Remove(matchedItem);
                         break;
 
                     case "door":
@@ -185,7 +185,7 @@ namespace Codecool.Quest
                         {
                             keys.Add((Key)item);
                         }
-                        Door door = (Door)_map.Items.Find(item => item.Type == "door");
+                        Door door = (Door)_map.GetItems().Find(item => item.Type == "door");
                         door.KeyLock(keys);
                         break;
                  }

@@ -9,6 +9,8 @@ namespace Codecool.Quest.Models.Actors
         public Player(Cell cell) : base(cell)
         {
         }
+
+        public override int AttackStrength { get; set; }
         public override string TileName { get; } = "player";
         public Item Weapon { get; set; }
         

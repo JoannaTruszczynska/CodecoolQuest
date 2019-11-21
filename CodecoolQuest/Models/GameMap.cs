@@ -11,6 +11,22 @@ namespace Codecool.Quest.Models
         private readonly Cell[,] _cells;
         public Player Player { get; set; }
 
+        private List<Item> _items = new List<Item>();
+
+        public List<Item> GetItems()
+        {
+            return _items;
+
+        }
+
+        public void SetItem(Item item)
+        {
+            _items.Add(item);
+        }
+    
+
+    public Skeleton Skeleton { get; set; }
+
         public List<Skeleton> skeletonList = new List<Skeleton>();
         public GameMap(int width, int height, CellType defaultCellType)
         {
