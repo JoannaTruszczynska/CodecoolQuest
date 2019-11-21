@@ -17,7 +17,7 @@ namespace Codecool.Quest
 
         public SpriteBatch SpriteBatch;
 
-        private GameMap _map;
+        public GameMap _map;
         private TimeSpan _lastMoveTime;
 
         public const double MoveInterval = 0.1;
@@ -80,12 +80,11 @@ namespace Codecool.Quest
                 // Move left
 
                 var neighbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
-
+               
                 if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(-1, 0);
                 }
-
                 if (neighbourCell.CanIFight)
                 {
                     neighbourCell.Actor.TakeDamage(5);
@@ -94,14 +93,14 @@ namespace Codecool.Quest
                     {
                         _map.Player.TakeDamage(2);
                     }
-                    
+
                     else
                     {
                         neighbourCell.Actor = null;
-                       
-                       
+                        neighbourCell.CanIFight = false;
+                        neighbourCell.CanIMoveHere = true;
+                        neighbourCell.CellType = CellType.Floor;
                     }
-                   
                 }
 
 
@@ -117,6 +116,23 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(1, 0);
                 }
+                if (neighbourCell.CanIFight)
+                {
+                    neighbourCell.Actor.TakeDamage(5);
+
+                    if (neighbourCell.Actor.Health > 0)
+                    {
+                        _map.Player.TakeDamage(2);
+                    }
+
+                    else
+                    {
+                        neighbourCell.Actor = null;
+                        neighbourCell.CanIFight = false;
+                        neighbourCell.CanIMoveHere = true;
+                        neighbourCell.CellType = CellType.Floor;
+                    }
+                }
 
                 _lastMoveTime = gameTime.TotalGameTime;
 
@@ -131,6 +147,23 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(0, -1);
                 }
+                if (neighbourCell.CanIFight)
+                {
+                    neighbourCell.Actor.TakeDamage(5);
+
+                    if (neighbourCell.Actor.Health > 0)
+                    {
+                        _map.Player.TakeDamage(2);
+                    }
+
+                    else
+                    {
+                        neighbourCell.Actor = null;
+                        neighbourCell.CanIFight = false;
+                        neighbourCell.CanIMoveHere = true;
+                        neighbourCell.CellType = CellType.Floor;
+                    }
+                }
 
                 _lastMoveTime = gameTime.TotalGameTime;
             }
@@ -142,6 +175,23 @@ namespace Codecool.Quest
                 if (neighbourCell.CanIMoveHere)
                 {
                     _map.Player.Move(0, 1);
+                }
+                if (neighbourCell.CanIFight)
+                {
+                    neighbourCell.Actor.TakeDamage(5);
+
+                    if (neighbourCell.Actor.Health > 0)
+                    {
+                        _map.Player.TakeDamage(2);
+                    }
+
+                    else
+                    {
+                        neighbourCell.Actor = null;
+                        neighbourCell.CanIFight = false;
+                        neighbourCell.CanIMoveHere = true;
+                        neighbourCell.CellType = CellType.Floor;
+                    }
                 }
 
                 _lastMoveTime = gameTime.TotalGameTime;

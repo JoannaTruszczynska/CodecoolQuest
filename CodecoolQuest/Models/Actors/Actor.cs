@@ -26,9 +26,13 @@
             Cell = nextCell;
         }
 
-        public void TakeDamage (int damageValue)
+        public void TakeDamage(int damageValue)
         {
             Health -= damageValue;
         }
-        }
+
+       
+
+    }
+
 }
