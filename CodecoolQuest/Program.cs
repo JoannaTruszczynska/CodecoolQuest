@@ -2,7 +2,6 @@
 
 namespace Codecool.Quest
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -18,5 +17,4 @@ namespace Codecool.Quest
             game.Run();
         }
     }
-#endif
 }
