@@ -90,14 +90,23 @@ namespace Codecool.Quest
                 {
                     neighbourCell.Actor.TakeDamage(5);
 
-                    _map.Player.TakeDamage(2);
+                    if (neighbourCell.Actor.Health > 0)
+                    {
+                        _map.Player.TakeDamage(2);
+                    }
                     
-                    Console.WriteLine(_map.Player.Health  + " " + neighbourCell.Actor.Health);
-                    
+                    else
+                    {
+                        neighbourCell.Actor = null;
+                       
+                       
+                    }
+                   
                 }
 
+
                 _lastMoveTime = gameTime.TotalGameTime;
-            }   
+            }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 // Move right
@@ -142,8 +151,8 @@ namespace Codecool.Quest
 
             base.Update(gameTime);
         }
-       
-       
+
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>

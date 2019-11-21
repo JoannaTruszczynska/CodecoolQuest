@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/xiehu_000/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/roguelikeDungeon_transparent.png</SourceFile>
-  <SourceTime>2019-11-19T10:10:13.3485184+01:00</SourceTime>
-  <DestFile>C:/Users/xiehu_000/source/repos/quest-csharp-quest-csharp-abbw/CodecoolQuest/Content/bin/Windows/Content/roguelikeDungeon_transparent.xnb</DestFile>
-  <DestTime>2019-11-19T14:40:09.6041842+01:00</DestTime>
+  <SourceFile>C:/Users/joann/source/repos/OOP/TW_2/quest-csharp/CodecoolQuest/Content/roguelikeDungeon_transparent.png</SourceFile>
+  <SourceTime>2019-11-19T09:39:25.0498983+01:00</SourceTime>
+  <DestFile>C:/Users/joann/source/repos/OOP/TW_2/quest-csharp/CodecoolQuest/Content/bin/Windows/Content/roguelikeDungeon_transparent.xnb</DestFile>
+  <DestTime>2019-11-21T09:34:05.2492085+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
