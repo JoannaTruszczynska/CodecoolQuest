@@ -2,6 +2,7 @@
 using Codecool.Quest.Models.Actors;
 using System.IO;
 using System.Runtime.InteropServices;
+using Codecool.Quest.Models.Things;
 
 namespace Codecool.Quest.Models
 {
@@ -17,8 +18,6 @@ namespace Codecool.Quest.Models
             var height = int.Parse(firstLineSplit[1]);
 
             var map = new GameMap(width, height, CellType.Empty);
-           
- //a           
 
             for (var y = 0; y < height; y++)
             {
@@ -70,21 +69,29 @@ namespace Codecool.Quest.Models
                                     map.Player = new Player(cell);
                                     break;
                                 }
-                            case 'K':
-                                {
-                                    cell.CellType = CellType.Key;
-                                    cell.CanIMoveHere = true;
-                                    cell.CanIFight = false;
-                                    break;
-                                }
-                            case 'D':
-                                {
-                                    cell.CellType = CellType.Door;
-                                    cell.CanIMoveHere = true;
-                                    cell.CanIFight = false;
-                                    break;
-                                }
-
+                            case 'k':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                Item key = new Key(cell);
+                                map.SetItem(key);
+                                break;
+                            }
+                            case 'd':
+                            {
+                                cell.CellType = CellType.Floor;
+                                Item door = new Door(cell, 1);
+                                map.SetItem(door);
+                                break;
+                            }
+                            case 't':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                Item sword = new Sword(cell);
+                                map.SetItem(sword);
+                                break;
+                            }
                         }
                     }
                 }

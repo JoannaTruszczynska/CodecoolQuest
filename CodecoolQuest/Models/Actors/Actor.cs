@@ -6,6 +6,7 @@
         public int Health { get; set; } = 10;
         public abstract int AttackStrength { get; set; }
 
+        public bool CanIFight { get; set; }
         public int X => Cell.X;
 
         public int Y => Cell.Y;

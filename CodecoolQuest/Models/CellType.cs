@@ -5,7 +5,6 @@
         Empty,
         Floor,
         Wall,
-        Key,
         Door,
         Sword
     }

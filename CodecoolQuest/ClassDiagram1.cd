@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Codecool.Quest.Models.Actors.Actor">
-    <Position X="6.75" Y="2.5" Width="1.5" />
+    <Position X="4.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAYBA=</HashCode>
       <FileName>Models\Actors\Actor.cs</FileName>
@@ -9,123 +9,110 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Codecool.Quest.Models.Actors.Player">
-    <Position X="5.5" Y="5.75" Width="1.5" />
+    <Position X="3.25" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAABAAAggAAAAAAAAAABA=</HashCode>
       <FileName>Models\Actors\Player.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Codecool.Quest.Models.Actors.Skeleton">
-    <Position X="7.75" Y="5.75" Width="1.5" />
+    <Position X="5.5" Y="11.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Models\Actors\Skeleton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Codecool.Quest.Models.Cell" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4.25" Y="1" Width="1.5" />
-    <AssociationLine Name="Thing" Type="Codecool.Quest.Models.Things.Thing">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.133" Y="0.068" />
-      </MemberNameLabel>
-    </AssociationLine>
+    <Position X="2.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIIAAAIAAAAAgAAAAAAAAACAAAAAAAQAAAAAAAAAYBA=</HashCode>
+      <HashCode>AIIAAAIAAAAAgAAAAAAAAAAEAAAAAAQAAAAAAAAAYBA=</HashCode>
       <FileName>Models\Cell.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Thing" />
+      <Property Name="Item" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Codecool.Quest.Models.GameMap" Collapsed="true">
-    <Position X="12" Y="1" Width="1.5" />
+    <Position X="9.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAABAAAAAQBAAAAAEAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>QAAAAAAABAAACAABAAAAAEAAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Models\GameMap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Codecool.Quest.Models.GUI" Collapsed="true">
-    <Position X="13.75" Y="1" Width="1.5" />
+    <Position X="11.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAgAAAAAAAAAAAAAAAAAAAAICAAAAAAAAACAAAAAA=</HashCode>
       <FileName>Models\GUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Codecool.Quest.Models.MapLoader" Collapsed="true">
-    <Position X="10.25" Y="2" Width="1.5" />
+    <Position X="8" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\MapLoader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Codecool.Quest.Models.Tiles" Collapsed="true">
-    <Position X="13.75" Y="2" Width="1.5" />
-    <NestedTypes>
-      <Class Name="Codecool.Quest.Models.Tiles.Tile" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Models\Tiles.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
+    <Position X="11.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAAAAAAACIAAAAAIQAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\Tiles.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Codecool.Quest.Program" Collapsed="true">
-    <Position X="12" Y="2" Width="1.5" />
+    <Position X="9.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Codecool.Quest.CodecoolQuestGame" Collapsed="true">
-    <Position X="10.25" Y="1" Width="1.5" />
+    <Position X="8" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAABAACAgAAAAAAAAAAAAAAAAAAQEBAAAAAAAQ=</HashCode>
+      <HashCode>AAQAAAAABAACAgAAAAAAAAAEAAAAAAAAQEBAAAAAAAQ=</HashCode>
       <FileName>CodecoolQuestGame.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Codecool.Quest.Models.Things.Thing">
-    <Position X="1.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Models\Things\Thing.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Codecool.Quest.Item">
-    <Position X="0.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Item.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Codecool.Quest.Models.Things.Door">
-    <Position X="2.75" Y="5" Width="1.5" />
+    <Position X="0.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAQAAAAAAABA=</HashCode>
       <FileName>Models\Things\Door.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Codecool.Quest.Models.Things.Key" Collapsed="true">
+    <Position X="2.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAABA=</HashCode>
+      <FileName>Models\Things\Key.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.Things.Sword" Collapsed="true">
+    <Position X="5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAABA=</HashCode>
+      <FileName>Models\Things\Sword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Codecool.Quest.Models.Things.Item">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAQAgAAAAABA=</HashCode>
+      <FileName>Models\Things\Item.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="Codecool.Quest.Models.IDrawable" Collapsed="true">
-    <Position X="10.25" Y="3.25" Width="1.5" />
+    <Position X="8" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Models\IDrawable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Codecool.Quest.IInventory" Collapsed="true">
-    <Position X="12" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>IInventory.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Enum Name="Codecool.Quest.Models.CellType" Collapsed="true">
-    <Position X="10.25" Y="4.25" Width="1.5" />
+    <Position X="8" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAwAAAIAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Models\CellType.cs</FileName>

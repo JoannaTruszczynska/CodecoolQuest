@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using Codecool.Quest.Models.Actors;
+﻿using Codecool.Quest.Models.Actors;
+using Codecool.Quest.Models.Things;
+using System.Collections.Generic;
 
 namespace Codecool.Quest.Models
 {
@@ -9,7 +10,22 @@ namespace Codecool.Quest.Models
         public int Width { get; }
         private readonly Cell[,] _cells;
         public Player Player { get; set; }
-        public Skeleton Skeleton { get; set; }
+
+        private List<Item> _items = new List<Item>();
+
+        public List<Item> GetItems()
+        {
+            return _items;
+
+        }
+
+        public void SetItem(Item item)
+        {
+            _items.Add(item);
+        }
+    
+
+    public Skeleton Skeleton { get; set; }
 
         public List<Skeleton> skeletonList = new List<Skeleton>();
         public GameMap(int width, int height, CellType defaultCellType)
