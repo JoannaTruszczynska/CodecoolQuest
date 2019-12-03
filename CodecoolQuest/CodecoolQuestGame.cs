@@ -53,8 +53,8 @@ namespace Codecool.Quest
             GUI.Load();
             Tiles.Load();
 
-            _map = MapLoader.LoadMap();
-        }
+          _map = MapLoader.LoadMap();
+         }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -202,7 +202,7 @@ namespace Codecool.Quest
             GraphicsDevice.Clear(Color.Black);
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-
+            
             for (var x = 0; x < _map.Width; x++)
             {
                 for (var y = 0; y < _map.Height; y++)
@@ -223,10 +223,16 @@ namespace Codecool.Quest
                     }
                 }
             }
+            
 
             SpriteBatch.End();
 
             base.Draw(gameTime);
+
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
+            GUI.Text(new Vector2(700, 5), _map.Player.Health.ToString(), Color.White);
+            SpriteBatch.End();
+
         }
 
     }

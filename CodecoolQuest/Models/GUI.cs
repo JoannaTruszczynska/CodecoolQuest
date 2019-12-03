@@ -49,5 +49,6 @@ namespace Codecool.Quest.Models
         {
             CodecoolQuestGame.GameSingleton.SpriteBatch.DrawString(_font, text, pos, color);
         }
+
     }
 }

@@ -3,6 +3,9 @@ using Codecool.Quest.Models.Actors;
 using System.IO;
 using System.Runtime.InteropServices;
 using Codecool.Quest.Models.Things;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Codecool.Quest.Models
 {
@@ -10,6 +13,7 @@ namespace Codecool.Quest.Models
     {
         public static GameMap LoadMap()
         {
+            
             using var stream = new StreamReader("map.txt");
             var firstLine = stream.ReadLine();
             var firstLineSplit = firstLine.Split(' ');
@@ -90,6 +94,13 @@ namespace Codecool.Quest.Models
                                 cell.CanIMoveHere = true;
                                 Item sword = new Sword(cell);
                                 map.SetItem(sword);
+                                break;
+                            }
+                            case 'h':
+                            {
+                                cell.CellType = CellType.Heart;
+                                cell.CanIMoveHere = false;
+                                cell.CanIFight = false;
                                 break;
                             }
                         }
