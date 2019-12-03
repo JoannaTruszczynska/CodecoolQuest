@@ -15,7 +15,7 @@ namespace Codecool.Quest.Models.Actors
         public Item Weapon { get; set; }
         
         private List<Item> _items = new List<Item>();
-
+        
         public List<Item> GetItems()
         {
             return _items;
