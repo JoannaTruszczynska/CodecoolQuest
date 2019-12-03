@@ -40,7 +40,6 @@ namespace Codecool.Quest
 
             _lastMoveTime = TimeSpan.Zero;
         }
-
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -203,9 +202,7 @@ namespace Codecool.Quest
                         break;
 
                     case "healthIncrease":
-                        _map.Player.SetItem(matchedItem);
                         matchedItem.Disable();
-                        _map.GetItems().Remove(matchedItem);
                         _map.Player.Health += 5;
                         break;
 
@@ -223,19 +220,39 @@ namespace Codecool.Quest
             }
         }
 
+        protected Dictionary<string, int> CalculateFogWar()
+        {
+            int drawingSquare = 7;
+            
+            Dictionary<string, int> coord = new Dictionary<string, int>();
+            
+            coord["leftBorder"] = (_map.Player.X - drawingSquare <= 0) ? 0 : _map.Player.X - drawingSquare;
+            coord["rightBorder"] = (_map.Player.X + drawingSquare >= _map.Width)
+                ? _map.Width
+                : _map.Player.X + drawingSquare;
+            coord["topBorder"] = (_map.Player.Y - drawingSquare <= 0) ? 0 : _map.Player.Y - drawingSquare;
+            coord["bottomBorder"] = (_map.Player.Y + drawingSquare >= _map.Height) ? _map.Height : _map.Player.Y + drawingSquare;
+            
+
+            return coord;
+            
+        }
+        
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            var coord = CalculateFogWar();
+            
             GraphicsDevice.Clear(Color.Black);
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
 
-            for (var x = 0; x < _map.Width; x++)
+            for (var x =  coord["leftBorder"]; x < coord["rightBorder"]; x++)
             {
-                for (var y = 0; y < _map.Height; y++)
+                for (var y =  coord["topBorder"]; y <  coord["bottomBorder"]; y++)
                 {
                     var cell = _map.GetCell(x, y);
 
