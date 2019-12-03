@@ -1,13 +1,12 @@
 ﻿using Codecool.Quest.Models;
+using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using Codecool.Quest.Models.Actors;
+using System.Diagnostics;
 
 namespace Codecool.Quest
 {
@@ -81,7 +80,7 @@ namespace Codecool.Quest
 
             if (deltaTime.TotalSeconds < MoveInterval)
                 return;
-
+            // fixme this is not using OOP principles
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 // Move left
@@ -95,10 +94,16 @@ namespace Codecool.Quest
 
                 else if (neighbourCell.CanIFight)
                 {
-                    _map.Player.Fight(neighbourCell, _map);
-                }
+                    _map.Player.Fight(neighbourCell, _map); 
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                                   }
 
-                Util.SkeletonMove(_map, neighbourCell);
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
@@ -112,10 +117,17 @@ namespace Codecool.Quest
                 }
                 else if (neighbourCell.CanIFight)
                 {
-                    _map.Player.Fight(neighbourCell, _map);
+                    _map.Player.Fight(neighbourCell, _map); 
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                    
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
@@ -130,9 +142,16 @@ namespace Codecool.Quest
                 else if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                    
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
@@ -147,16 +166,22 @@ namespace Codecool.Quest
                 else if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                    
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
 
             _lastMoveTime = gameTime.TotalGameTime;
 
             base.Update(gameTime);
         }
-
 
         private void CheckNextCell(int x, int y)
         {
@@ -272,6 +297,7 @@ namespace Codecool.Quest
             SpriteBatch.End();
 
             base.Draw(gameTime);
+
         }
     }
 }

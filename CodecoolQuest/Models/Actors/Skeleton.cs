@@ -6,6 +6,8 @@
 
         public override int AttackStrength { get; set; } = 2;
 
+
+
         public Skeleton(Cell cell) : base(cell)
         {
         }

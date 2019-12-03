@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Codecool.Quest.Models.Actors;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -25,6 +27,7 @@ namespace Codecool.Quest.Models
 
             for (var y = 0; y < height; y++)
             {
+                
                 var line = stream.ReadLine();
 
                 for (var x = 0; x < width; x++)
