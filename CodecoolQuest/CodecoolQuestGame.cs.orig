@@ -1,13 +1,12 @@
-﻿using Codecool.Quest.Models;
+﻿using System;
+using Codecool.Quest.Models;
+using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using Codecool.Quest.Models.Actors;
 
 namespace Codecool.Quest
 {
@@ -90,13 +89,30 @@ namespace Codecool.Quest
                     _map.Player.Move(-1, 0);
                 }
 
-                else if (neighbourCell.CanIFight)
+                if (neighbourCell.CanIFight)
                 {
+<<<<<<< HEAD
                     _map.Player.Fight(neighbourCell, _map);
+=======
+                    neighbourCell.Actor.TakeDamage(5);
+
+                    if (neighbourCell.Actor.Health > 0)
+                    {
+                        _map.Player.TakeDamage(2);
+                    }
+
+                    else
+                    {
+                        neighbourCell.Actor = null;
+                        neighbourCell.CanIFight = false;
+                        neighbourCell.CanIMoveHere = true;
+                        neighbourCell.CellType = CellType.Floor;
+                    }
+>>>>>>> 48ee93154cfecffc1a932b43a891530fe89ac694
                 }
 
-                Util.SkeletonMove(_map,neighbourCell);
-                
+
+                _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
@@ -108,13 +124,12 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(1, 0);
                 }
-                else if (neighbourCell.CanIFight)
+                if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
-
+                _lastMoveTime = gameTime.TotalGameTime;
 
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
@@ -127,50 +142,46 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(0, -1);
                 }
-                else if (neighbourCell.CanIFight)
+                if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
-
-
+                _lastMoveTime = gameTime.TotalGameTime;
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
-                CheckNextCell(0, 1);
+                CheckNextCell(0,1);
                 // Move down
                 neighbourCell = _map.Player.Cell.GetNeighbor(0, 1);
-
+                
                 if (neighbourCell.CanIMoveHere)
                 {
+
                     _map.Player.Move(0, 1);
                 }
-                else if (neighbourCell.CanIFight)
+                if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
-
+                _lastMoveTime = gameTime.TotalGameTime;
             }
 
-            _lastMoveTime = gameTime.TotalGameTime;
 
             base.Update(gameTime);
         }
 
-
         private void CheckNextCell(int x, int y)
         {
             var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
-
+            
             var matchedItem = _map.GetItems().Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
-
-            if (matchedItem != null)
-            {
-                switch (matchedItem.Type)
-                {
+             
+             if (matchedItem != null)
+             {
+                 switch (matchedItem.Type)
+                 {
                     case "item":
                         _map.Player.SetItem(matchedItem);
                         matchedItem.Disable();
@@ -178,7 +189,6 @@ namespace Codecool.Quest
                         break;
 
                     case "weapon":
-                        _map.Player.TileName = "armedplayer";
                         _map.Player.Weapon = matchedItem;
                         matchedItem.Disable();
                         _map.GetItems().Remove(matchedItem);
@@ -194,9 +204,10 @@ namespace Codecool.Quest
                         Door door = (Door)_map.GetItems().Find(item => item.Type == "door");
                         door.KeyLock(keys);
                         break;
-                }
-            }
+                 }
+             } 
         }
+
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -233,5 +244,6 @@ namespace Codecool.Quest
 
             base.Draw(gameTime);
         }
+
     }
 }

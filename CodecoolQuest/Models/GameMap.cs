@@ -16,18 +16,17 @@ namespace Codecool.Quest.Models
         public List<Item> GetItems()
         {
             return _items;
-
         }
 
         public void SetItem(Item item)
         {
             _items.Add(item);
         }
-    
 
-    public Skeleton Skeleton { get; set; }
+        public Skeleton Skeleton { get; set; }
 
         public List<Skeleton> skeletonList = new List<Skeleton>();
+
         public GameMap(int width, int height, CellType defaultCellType)
         {
             Width = width;
