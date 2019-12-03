@@ -1,13 +1,12 @@
 ﻿using Codecool.Quest.Models;
+using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using Codecool.Quest.Models.Actors;
+using System.Diagnostics;
 
 namespace Codecool.Quest
 {
@@ -54,8 +53,8 @@ namespace Codecool.Quest
             GUI.Load();
             Tiles.Load();
 
-          _map = MapLoader.LoadMap();
-         }
+            _map = MapLoader.LoadMap();
+        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -78,7 +77,7 @@ namespace Codecool.Quest
 
             if (deltaTime.TotalSeconds < MoveInterval)
                 return;
-
+            // fixme this is not using OOP principles
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 // Move left
@@ -89,14 +88,18 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(-1, 0);
                 }
-
                 else if (neighbourCell.CanIFight)
                 {
-                    _map.Player.Fight(neighbourCell, _map);
-                }
+                    _map.Player.Fight(neighbourCell, _map); 
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                                   }
 
-                Util.SkeletonMove(_map,neighbourCell);
-                
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
@@ -110,12 +113,17 @@ namespace Codecool.Quest
                 }
                 else if (neighbourCell.CanIFight)
                 {
-                    _map.Player.Fight(neighbourCell, _map);
+                    _map.Player.Fight(neighbourCell, _map); 
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                    
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
-
-
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
@@ -130,11 +138,16 @@ namespace Codecool.Quest
                 else if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                    
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
-
-
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
@@ -149,17 +162,22 @@ namespace Codecool.Quest
                 else if (neighbourCell.CanIFight)
                 {
                     _map.Player.Fight(neighbourCell, _map);
+                    if (neighbourCell.Actor != null)
+                        neighbourCell.Actor.InFightCantMove = true;
+                    
                 }
 
-                Util.SkeletonMove(_map, neighbourCell);
-
+                foreach (Skeleton skeleton in _map.skeletonList)
+                {
+                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    skeleton.InFightCantMove = false;
+                }
             }
 
             _lastMoveTime = gameTime.TotalGameTime;
 
             base.Update(gameTime);
         }
-
 
         private void CheckNextCell(int x, int y)
         {
@@ -185,12 +203,12 @@ namespace Codecool.Quest
                         break;
 
                     case "healthIncrease":
-                       _map.Player.SetItem(matchedItem);
+                        _map.Player.SetItem(matchedItem);
                         matchedItem.Disable();
                         _map.GetItems().Remove(matchedItem);
-                       _map.Player.Health += 5;
+                        _map.Player.Health += 5;
                         break;
-                        
+
                     case "door":
                         Console.WriteLine("door");
                         List<Key> keys = new List<Key>();
@@ -214,7 +232,7 @@ namespace Codecool.Quest
             GraphicsDevice.Clear(Color.Black);
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-            
+
             for (var x = 0; x < _map.Width; x++)
             {
                 for (var y = 0; y < _map.Height; y++)
@@ -235,17 +253,14 @@ namespace Codecool.Quest
                     }
                 }
             }
-            
 
             SpriteBatch.End();
-            
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
             GUI.Text(new Vector2(700, 5), _map.Player.Health.ToString(), Color.White);
-            SpriteBatch.End(); 
-            
-            base.Draw(gameTime);
+            SpriteBatch.End();
 
+            base.Draw(gameTime);
         }
     }
 }

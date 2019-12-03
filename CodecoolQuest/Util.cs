@@ -7,11 +7,10 @@ namespace Codecool.Quest
     public static class Util
 
     {
-        public static void SkeletonMove(GameMap _map, Cell neighbourCell)
+        public static void SkeletonMove(GameMap _map, Cell neighbourCell, Skeleton skeleton)
         {
             Random rand = new Random();
-            foreach (Skeleton skeleton in _map.skeletonList)
-            {
+            
                 int EnemyYMoveOffset = 0;
                 int EnemyXMoveOffset = rand.Next(-1, 2);
                 switch (EnemyXMoveOffset)
@@ -36,7 +35,7 @@ namespace Codecool.Quest
                 }
 
                 Console.WriteLine("Skeleton X " + skeleton.X + "Skeleton Y " + skeleton.Y);
-            }
+            
         }
     }
 }
