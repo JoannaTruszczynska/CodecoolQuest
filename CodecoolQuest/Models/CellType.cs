@@ -5,6 +5,6 @@
         Empty,
         Floor,
         Wall,
-        Heart
+        Hp
     }
 }

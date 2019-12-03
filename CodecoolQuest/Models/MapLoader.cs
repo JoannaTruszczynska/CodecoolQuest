@@ -98,7 +98,15 @@ namespace Codecool.Quest.Models
                             }
                             case 'h':
                             {
-                                cell.CellType = CellType.Heart;
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                Item heart = new Heart(cell);
+                                map.SetItem(heart);
+                                break;
+                            }
+                            case 'l':
+                            {
+                                cell.CellType = CellType.Hp;
                                 cell.CanIMoveHere = false;
                                 cell.CanIFight = false;
                                 break;

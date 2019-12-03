@@ -178,6 +178,13 @@ namespace Codecool.Quest
                         _map.GetItems().Remove(matchedItem);
                         break;
 
+                    case "healthIncrease":
+                       _map.Player.SetItem(matchedItem);
+                        matchedItem.Disable();
+                        _map.GetItems().Remove(matchedItem);
+                       _map.Player.Health += 5;
+                        break;
+                        
                     case "door":
                         Console.WriteLine("door");
                         List<Key> keys = new List<Key>();
@@ -226,12 +233,13 @@ namespace Codecool.Quest
             
 
             SpriteBatch.End();
-
-            base.Draw(gameTime);
+            
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
             GUI.Text(new Vector2(700, 5), _map.Player.Health.ToString(), Color.White);
-            SpriteBatch.End();
+            SpriteBatch.End(); 
+            
+            base.Draw(gameTime);
 
         }
 
