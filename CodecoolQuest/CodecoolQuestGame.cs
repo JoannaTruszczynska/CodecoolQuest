@@ -94,14 +94,18 @@ namespace Codecool.Quest
 
                 else if (neighbourCell.CanIFight)
                 {
-                    _map.Player.Fight(neighbourCell, _map); 
+                    _map.Player.Fight(neighbourCell, _map);
                     if (neighbourCell.Actor != null)
                         neighbourCell.Actor.InFightCantMove = true;
-                                   }
+                }
 
                 foreach (Skeleton skeleton in _map.skeletonList)
                 {
-                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    if (!skeleton.InFightCantMove)
+                    {
+                        Util.SkeletonMove(_map, neighbourCell, skeleton);
+                    }
+
                     skeleton.InFightCantMove = false;
                 }
             }
@@ -117,15 +121,18 @@ namespace Codecool.Quest
                 }
                 else if (neighbourCell.CanIFight)
                 {
-                    _map.Player.Fight(neighbourCell, _map); 
+                    _map.Player.Fight(neighbourCell, _map);
                     if (neighbourCell.Actor != null)
                         neighbourCell.Actor.InFightCantMove = true;
-                    
                 }
 
                 foreach (Skeleton skeleton in _map.skeletonList)
                 {
-                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    if (!skeleton.InFightCantMove)
+                    {
+                        Util.SkeletonMove(_map, neighbourCell, skeleton);
+                    }
+
                     skeleton.InFightCantMove = false;
                 }
             }
@@ -144,12 +151,15 @@ namespace Codecool.Quest
                     _map.Player.Fight(neighbourCell, _map);
                     if (neighbourCell.Actor != null)
                         neighbourCell.Actor.InFightCantMove = true;
-                    
                 }
 
                 foreach (Skeleton skeleton in _map.skeletonList)
                 {
-                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    if (!skeleton.InFightCantMove)
+                    {
+                        Util.SkeletonMove(_map, neighbourCell, skeleton);
+                    }
+
                     skeleton.InFightCantMove = false;
                 }
             }
@@ -168,12 +178,15 @@ namespace Codecool.Quest
                     _map.Player.Fight(neighbourCell, _map);
                     if (neighbourCell.Actor != null)
                         neighbourCell.Actor.InFightCantMove = true;
-                    
                 }
 
                 foreach (Skeleton skeleton in _map.skeletonList)
                 {
-                    if (!skeleton.InFightCantMove) { Util.SkeletonMove(_map, neighbourCell, skeleton); }
+                    if (!skeleton.InFightCantMove)
+                    {
+                        Util.SkeletonMove(_map, neighbourCell, skeleton);
+                    }
+
                     skeleton.InFightCantMove = false;
                 }
             }
@@ -182,6 +195,7 @@ namespace Codecool.Quest
 
             base.Update(gameTime);
         }
+
 
         private void CheckNextCell(int x, int y)
         {
@@ -195,34 +209,30 @@ namespace Codecool.Quest
                 switch (matchedItem.Type)
                 {
                     case "item":
-                        _map.Player.SetItem(matchedItem);
+                        matchedItem.UpdateOwnerProperties(_map.Player);
                         matchedItem.Disable();
                         _map.GetItems().Remove(matchedItem);
                         break;
 
                     case "weapon":
+                        matchedItem.UpdateOwnerProperties(_map.Player);
                         _map.Player.TileName = "armedplayer";
                         _map.Player.Weapon = matchedItem;
                         matchedItem.Disable();
                         _map.GetItems().Remove(matchedItem);
                         break;
 
-                    case "healthIncrease":
-                        matchedItem.Disable();
-                        _map.Player.Health += 5;
-                        _map.GetItems().Remove(matchedItem);
-                        break;
-
                     case "door":
-                        Console.WriteLine("door");
-                        List<Key> keys = new List<Key>();
+                        List<Key> playerKeys = new List<Key>();
+                        // keys = _map.Player.GetItems().ForEach(item => item.Subtype == "dupa");
                         foreach (var item in _map.Player.GetItems())
                         {
-                            keys.Add((Key) item);
+                            if (item.Subtype == "key")
+                                playerKeys.Add((Key) item);
                         }
 
-                        Door door = (Door) _map.GetItems().Find(item => item.Type == "door");
-                        door.KeyLock(keys);
+                        Door door = (Door) matchedItem;
+                        door.KeyLock(playerKeys);
                         break;
                 }
             }
@@ -234,25 +244,23 @@ namespace Codecool.Quest
         /// <returns></returns>
         private void CalculateFogWar()
         {
-            //Here you can modify fog of war
-            int drawingSquare = 100;
+            var drawingSquare = _map.Player.SightRange;
 
             _coord["leftBorder"] = (_map.Player.X - drawingSquare <= 0)
                 ? 0
                 : _map.Player.X - drawingSquare;
-            
+
             _coord["rightBorder"] = (_map.Player.X + drawingSquare >= _map.Width)
                 ? _map.Width
                 : _map.Player.X + drawingSquare;
-            
+
             _coord["topBorder"] = (_map.Player.Y - drawingSquare <= 0)
                 ? 0
                 : _map.Player.Y - drawingSquare;
-            
+
             _coord["bottomBorder"] = (_map.Player.Y + drawingSquare >= _map.Height)
                 ? _map.Height
                 : _map.Player.Y + drawingSquare;
-            
         }
 
         /// <summary>
@@ -277,9 +285,9 @@ namespace Codecool.Quest
                     {
                         Tiles.DrawTile(SpriteBatch, cell.Actor, x, y);
                     }
-                    else if (cell.Item != null)
+                    else if (cell.Thing != null)
                     {
-                        Tiles.DrawTile(SpriteBatch, cell.Item, x, y);
+                        Tiles.DrawTile(SpriteBatch, cell.Thing, x, y);
                     }
                     else
                     {
@@ -297,7 +305,6 @@ namespace Codecool.Quest
             SpriteBatch.End();
 
             base.Draw(gameTime);
-
         }
     }
 }

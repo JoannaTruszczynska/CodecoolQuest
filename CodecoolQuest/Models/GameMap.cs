@@ -11,16 +11,16 @@ namespace Codecool.Quest.Models
         private readonly Cell[,] _cells;
         public Player Player { get; set; }
 
-        private List<Item> _items = new List<Item>();
+        private List<Thing> _items = new List<Thing>();
 
-        public List<Item> GetItems()
+        public List<Thing> GetItems()
         {
             return _items;
         }
 
-        public void SetItem(Item item)
+        public void SetItem(Thing thing)
         {
-            _items.Add(item);
+            _items.Add(thing);
         }
 
         public Skeleton Skeleton { get; set; }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Channels;
 using Codecool.Quest.Models.Things;
 
 namespace Codecool.Quest.Models.Actors
@@ -12,20 +14,20 @@ namespace Codecool.Quest.Models.Actors
 
         public override int AttackStrength { get; set; } = 5;
         public override string TileName { get; set; } = "player";
-        public Item Weapon { get; set; }
+        public Thing Weapon { get; set; }
         
-        private List<Item> _items = new List<Item>();
-        
-        public List<Item> GetItems()
+        private List<Thing> _items = new List<Thing>();
+
+        public int SightRange { get; set; } = 4;
+
+        public List<Thing> GetItems()
         {
             return _items;
 
         }
-
-        public void SetItem(Item item)
+        public void SetItem(Thing thing)
         {
-            _items.Add(item);
+            _items.Add(thing);
         }
-        
     }
 }

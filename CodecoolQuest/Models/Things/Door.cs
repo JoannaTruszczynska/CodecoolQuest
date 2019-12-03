@@ -9,35 +9,35 @@ using Codecool.Quest.Models.Things;
 
 namespace Codecool.Quest.Models.Things
 {
-    public class Door : Item
+    public class Door : Thing
     {
-        public Door(Cell cell, int needMatchedKeys) : base(cell)
+        public Door(Cell cell, List<string> allowKeys) : base(cell)
         {
-            NeedMatchedKeys = needMatchedKeys;
+            _allowKeys = allowKeys;
             cell.CanIMoveHere = false;
         }
-        
-        private int NeedMatchedKeys { get; }
-        public void KeyLock(List<Key> keys)
+
+        private List<string> _allowKeys { get;}
+        public void KeyLock(List<Key> playerKeys)// todo keylock not work correctly !!!
         {
-            int matchedKeys = 0;
-            string allowKey = "blueKey";
-
-            foreach (var key in keys)
+            var allowKeys = new List<string>(_allowKeys);
+            foreach (var key in playerKeys)
             {
-                if (key.Name == allowKey)
-                {
-                    matchedKeys++;
-                }
-
-                if (matchedKeys == NeedMatchedKeys)
+                playerKeys.ForEach(x => Console.WriteLine(x.Name));
+                if (allowKeys.Contains(key.Name))
                 {
                     this.Cell.CanIMoveHere = true;
                 }
             }
+            
         }
 
         public override string TileName { get; } = "door";
         public override string Type { get; } = "door";
+        public override string Subtype { get; } = "door";
+
+        public override void UpdateOwnerProperties(Actor actor)
+        {
+        }
     }
 }

@@ -80,14 +80,22 @@ namespace Codecool.Quest.Models
                             {
                                 cell.CellType = CellType.Floor;
                                 cell.CanIMoveHere = true;
-                                Item key = new Key(cell);
-                                map.SetItem(key);
+                                Thing blueKey = new Key(cell, "blueKey", "blueKey");
+                                map.SetItem(blueKey);
+                                break;
+                            }
+                            case 'b':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                Thing redKey = new Key(cell, "redKey", "redKey");
+                                map.SetItem(redKey);
                                 break;
                             }
                             case 'd':
                             {
                                 cell.CellType = CellType.Floor;
-                                Item door = new Door(cell, 1);
+                                Thing door = new Door(cell, new List<string>(){"blueKey"});
                                 map.SetItem(door);
                                 break;
                             }
@@ -95,7 +103,7 @@ namespace Codecool.Quest.Models
                             {
                                 cell.CellType = CellType.Floor;
                                 cell.CanIMoveHere = true;
-                                Item sword = new Sword(cell);
+                                Thing sword = new Sword(cell);
                                 map.SetItem(sword);
                                 break;
                             }
@@ -103,7 +111,7 @@ namespace Codecool.Quest.Models
                             {
                                 cell.CellType = CellType.Floor;
                                 cell.CanIMoveHere = true;
-                                Item heart = new Heart(cell);
+                                Thing heart = new Heart(cell);
                                 map.SetItem(heart);
                                 break;
                             }
@@ -112,6 +120,14 @@ namespace Codecool.Quest.Models
                                 cell.CellType = CellType.Hp;
                                 cell.CanIMoveHere = false;
                                 cell.CanIFight = false;
+                                break;
+                            }
+                            case 'x':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                Torch torch = new Torch(cell);
+                                map.SetItem(torch);
                                 break;
                             }
                         }

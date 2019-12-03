@@ -34,7 +34,7 @@ namespace Codecool.Quest
                     skeleton.Move(EnemyXMoveOffset, EnemyYMoveOffset);
                 }
 
-                Console.WriteLine("Skeleton X " + skeleton.X + "Skeleton Y " + skeleton.Y);
+                //Console.WriteLine("Skeleton X " + skeleton.X + "Skeleton Y " + skeleton.Y);
             
         }
     }
