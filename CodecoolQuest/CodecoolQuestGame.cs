@@ -54,8 +54,8 @@ namespace Codecool.Quest
             GUI.Load();
             Tiles.Load();
 
-            _map = MapLoader.LoadMap();
-        }
+          _map = MapLoader.LoadMap();
+         }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -184,6 +184,13 @@ namespace Codecool.Quest
                         _map.GetItems().Remove(matchedItem);
                         break;
 
+                    case "healthIncrease":
+                       _map.Player.SetItem(matchedItem);
+                        matchedItem.Disable();
+                        _map.GetItems().Remove(matchedItem);
+                       _map.Player.Health += 5;
+                        break;
+                        
                     case "door":
                         Console.WriteLine("door");
                         List<Key> keys = new List<Key>();
@@ -207,7 +214,7 @@ namespace Codecool.Quest
             GraphicsDevice.Clear(Color.Black);
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-
+            
             for (var x = 0; x < _map.Width; x++)
             {
                 for (var y = 0; y < _map.Height; y++)
@@ -228,10 +235,17 @@ namespace Codecool.Quest
                     }
                 }
             }
+            
 
             SpriteBatch.End();
+            
 
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
+            GUI.Text(new Vector2(700, 5), _map.Player.Health.ToString(), Color.White);
+            SpriteBatch.End(); 
+            
             base.Draw(gameTime);
+
         }
     }
 }

@@ -4,6 +4,7 @@
     {
         Empty,
         Floor,
-        Wall
+        Wall,
+        Hp
     }
 }
