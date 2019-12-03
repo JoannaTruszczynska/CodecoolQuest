@@ -21,9 +21,12 @@ namespace Codecool.Quest
         public SpriteBatch SpriteBatch;
 
         public GameMap _map;
+
         private TimeSpan _lastMoveTime;
 
         public const double MoveInterval = 0.1;
+
+        private readonly Dictionary<string, int> _coord = new Dictionary<string, int>();
 
         public CodecoolQuestGame()
         {
@@ -41,6 +44,7 @@ namespace Codecool.Quest
 
             _lastMoveTime = TimeSpan.Zero;
         }
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -53,8 +57,8 @@ namespace Codecool.Quest
             GUI.Load();
             Tiles.Load();
 
-          _map = MapLoader.LoadMap();
-         }
+            _map = MapLoader.LoadMap();
+        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -94,8 +98,7 @@ namespace Codecool.Quest
                     _map.Player.Fight(neighbourCell, _map);
                 }
 
-                Util.SkeletonMove(_map,neighbourCell);
-                
+                Util.SkeletonMove(_map, neighbourCell);
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
@@ -113,8 +116,6 @@ namespace Codecool.Quest
                 }
 
                 Util.SkeletonMove(_map, neighbourCell);
-
-
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
@@ -132,8 +133,6 @@ namespace Codecool.Quest
                 }
 
                 Util.SkeletonMove(_map, neighbourCell);
-
-
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
@@ -151,7 +150,6 @@ namespace Codecool.Quest
                 }
 
                 Util.SkeletonMove(_map, neighbourCell);
-
             }
 
             _lastMoveTime = gameTime.TotalGameTime;
@@ -164,7 +162,8 @@ namespace Codecool.Quest
         {
             var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
 
-            var matchedItem = _map.GetItems().Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
+            var matchedItem = _map.GetItems()
+                .Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
 
             if (matchedItem != null)
             {
@@ -186,55 +185,66 @@ namespace Codecool.Quest
                     case "healthIncrease":
                         matchedItem.Disable();
                         _map.Player.Health += 5;
+                        _map.GetItems().Remove(matchedItem);
                         break;
-                        
+
                     case "door":
                         Console.WriteLine("door");
                         List<Key> keys = new List<Key>();
                         foreach (var item in _map.Player.GetItems())
                         {
-                            keys.Add((Key)item);
+                            keys.Add((Key) item);
                         }
-                        Door door = (Door)_map.GetItems().Find(item => item.Type == "door");
+
+                        Door door = (Door) _map.GetItems().Find(item => item.Type == "door");
                         door.KeyLock(keys);
                         break;
                 }
             }
         }
 
-        protected Dictionary<string, int> CalculateFogWar()
+        /// <summary>
+        /// This function calculates the drawing area of the map relative to the player's position
+        /// </summary>
+        /// <returns></returns>
+        private void CalculateFogWar()
         {
-            int drawingSquare = 7;
+            //Here you can modify fog of war
+            int drawingSquare = 100;
+
+            _coord["leftBorder"] = (_map.Player.X - drawingSquare <= 0)
+                ? 0
+                : _map.Player.X - drawingSquare;
             
-            Dictionary<string, int> coord = new Dictionary<string, int>();
-            
-            coord["leftBorder"] = (_map.Player.X - drawingSquare <= 0) ? 0 : _map.Player.X - drawingSquare;
-            coord["rightBorder"] = (_map.Player.X + drawingSquare >= _map.Width)
+            _coord["rightBorder"] = (_map.Player.X + drawingSquare >= _map.Width)
                 ? _map.Width
                 : _map.Player.X + drawingSquare;
-            coord["topBorder"] = (_map.Player.Y - drawingSquare <= 0) ? 0 : _map.Player.Y - drawingSquare;
-            coord["bottomBorder"] = (_map.Player.Y + drawingSquare >= _map.Height) ? _map.Height : _map.Player.Y + drawingSquare;
             
-
-            return coord;
+            _coord["topBorder"] = (_map.Player.Y - drawingSquare <= 0)
+                ? 0
+                : _map.Player.Y - drawingSquare;
+            
+            _coord["bottomBorder"] = (_map.Player.Y + drawingSquare >= _map.Height)
+                ? _map.Height
+                : _map.Player.Y + drawingSquare;
             
         }
-        
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            var coord = CalculateFogWar();
-            
-            GraphicsDevice.Clear(Color.Black);
+            CalculateFogWar();
+
+            GraphicsDevice.Clear(Color.FromNonPremultiplied(71, 45, 60, 256));
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-            
-            for (var x =  coord["leftBorder"]; x < coord["rightBorder"]; x++)
+
+            for (var x = _coord["leftBorder"]; x < _coord["rightBorder"]; x++)
             {
-                for (var y =  coord["topBorder"]; y <  coord["bottomBorder"]; y++)
+                for (var y = _coord["topBorder"]; y < _coord["bottomBorder"]; y++)
                 {
                     var cell = _map.GetCell(x, y);
 
@@ -252,17 +262,16 @@ namespace Codecool.Quest
                     }
                 }
             }
-            
+
 
             SpriteBatch.End();
-            
+
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
             GUI.Text(new Vector2(700, 5), _map.Player.Health.ToString(), Color.White);
-            SpriteBatch.End(); 
-            
-            base.Draw(gameTime);
+            SpriteBatch.End();
 
+            base.Draw(gameTime);
         }
     }
 }
