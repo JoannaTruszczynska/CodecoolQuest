@@ -1,9 +1,13 @@
-﻿namespace Codecool.Quest.Models.Actors
+﻿using System;
+
+namespace Codecool.Quest.Models.Actors
 {
     public abstract class Actor : IDrawable
     {
         public Cell Cell { get; private set; }
         public int Health { get; set; } = 10;
+
+        public abstract string Type { get; }
         public abstract int AttackStrength { get; set; }
 
         public bool InFightCantMove { get; set; } = false;
@@ -32,30 +36,34 @@
             Cell = nextCell;
         }
 
+        public void Disable()
+        {
+            Cell.Actor = null;
+        }
+
         public void TakeDamage(int damageValue)
         {
             Health -= damageValue;
         }
 
-        public void Fight(Cell neighbourCell, GameMap _map)
+        public void Fight(Actor enemy, GameMap map)
 
         {
-            neighbourCell.Actor.TakeDamage(this.AttackStrength);
+            enemy.TakeDamage(this.AttackStrength);
             
             
 
-            if (neighbourCell.Actor.Health > 0)
+            if (enemy.Health > 0)
             {
-                neighbourCell.Actor.InFightCantMove = true;
-                this.TakeDamage(neighbourCell.Actor.AttackStrength);
+                enemy.InFightCantMove = true;
+                this.TakeDamage(enemy.AttackStrength);
             }
             else
             {
-                
-                neighbourCell.Actor = null;
-                neighbourCell.CanIFight = false;
-                neighbourCell.CanIMoveHere = true;
-                neighbourCell.CellType = CellType.Floor;
+                enemy.Cell.CanIMoveHere = true;
+                enemy.Disable();
+                map.GetActors().Remove(enemy);
+              
             }
         }
     }

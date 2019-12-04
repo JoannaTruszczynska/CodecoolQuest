@@ -42,28 +42,24 @@ namespace Codecool.Quest.Models
                                 {
                                     cell.CellType = CellType.Empty;
                                     cell.CanIMoveHere = false;
-                                    cell.CanIFight = false;
                                     break;
                                 }
                             case '#':
                                 {
                                     cell.CellType = CellType.Wall;
                                     cell.CanIMoveHere = false;
-                                    cell.CanIFight = false;
                                     break;
                                 }
                             case '.':
                                 {
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = true;
-                                    cell.CanIFight = false;
                                     break;
                                 }
                             case 's':
                                 {
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = false;
-                                    cell.CanIFight = true;
                                     map.SetActor(new Skeleton(cell));
                                     break;
                                 }
@@ -71,7 +67,6 @@ namespace Codecool.Quest.Models
                                 {
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = true;
-                                    cell.CanIFight = false;
                                     map.Player = new Player(cell);
                                     break;
                                 }
@@ -118,7 +113,6 @@ namespace Codecool.Quest.Models
                             {
                                 cell.CellType = CellType.Hp;
                                 cell.CanIMoveHere = false;
-                                cell.CanIFight = false;
                                 break;
                             }
                             case 'x':

@@ -92,13 +92,7 @@ namespace Codecool.Quest
                     _map.Player.Move(-1, 0);
                 }
 
-                else if (neighbourCell.CanIFight)
-                {
-                    _map.Player.Fight(neighbourCell, _map);
-                    if (neighbourCell.Actor != null)
-                        neighbourCell.Actor.InFightCantMove = true;
-                }
-
+               
                 foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
@@ -119,13 +113,7 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(1, 0);
                 }
-                else if (neighbourCell.CanIFight)
-                {
-                    _map.Player.Fight(neighbourCell, _map);
-                    if (neighbourCell.Actor != null)
-                        neighbourCell.Actor.InFightCantMove = true;
-                }
-
+              
                 foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
@@ -146,13 +134,7 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(0, -1);
                 }
-                else if (neighbourCell.CanIFight)
-                {
-                    _map.Player.Fight(neighbourCell, _map);
-                    if (neighbourCell.Actor != null)
-                        neighbourCell.Actor.InFightCantMove = true;
-                }
-
+              
                 foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
@@ -173,12 +155,7 @@ namespace Codecool.Quest
                 {
                     _map.Player.Move(0, 1);
                 }
-                else if (neighbourCell.CanIFight)
-                {
-                    _map.Player.Fight(neighbourCell, _map);
-                    if (neighbourCell.Actor != null)
-                        neighbourCell.Actor.InFightCantMove = true;
-                }
+             
 
                 foreach (Skeleton skeleton in _map.GetActors())
                 {
@@ -211,7 +188,7 @@ namespace Codecool.Quest
                 .Find(actor => actor.Cell.X == neighborCell.X && actor.Cell.Y == neighborCell.Y);
             if (matchedActor != null)
             {
-                Sort.SortForActors(matchedActor, _map.Player);
+                Sort.SortForActors(matchedActor, _map);
             }
         }
 

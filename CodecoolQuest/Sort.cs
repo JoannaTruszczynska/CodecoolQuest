@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Codecool.Quest.Models;
 using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
 
@@ -40,8 +41,14 @@ namespace Codecool.Quest
             }
         }
 
-        public static void SortForActors(Actor actor, Player player)
+        public static void SortForActors(Actor matchedActor, GameMap map)
         {
+            switch (matchedActor.Type)
+            {
+                case "skeleton":
+                    map.Player.Fight(matchedActor, map); 
+                break;
+            }
         }
     }
 }
