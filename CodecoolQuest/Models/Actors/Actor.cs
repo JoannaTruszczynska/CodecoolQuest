@@ -23,7 +23,7 @@ namespace Codecool.Quest.Models.Actors
             Cell.Actor = this;
         }
 
-        public void Move(int dx, int dy)
+        public virtual void Move(int dx, int dy)
         {
             var nextCell = Cell.GetNeighbor(dx, dy);
             Cell.Actor = null;
@@ -44,6 +44,7 @@ namespace Codecool.Quest.Models.Actors
         public void TakeDamage(int damageValue)
         {
             Health -= damageValue;
+            InFightCantMove = true;
         }
 
         public void Fight(Actor enemy, GameMap map)
@@ -51,13 +52,12 @@ namespace Codecool.Quest.Models.Actors
         {
             enemy.TakeDamage(this.AttackStrength);
             
-            
-
             if (enemy.Health > 0)
             {
-                enemy.InFightCantMove = true;
-                this.TakeDamage(enemy.AttackStrength);
+                
+                TakeDamage(enemy.AttackStrength);
             }
+
             else
             {
                 enemy.Cell.CanIMoveHere = true;
