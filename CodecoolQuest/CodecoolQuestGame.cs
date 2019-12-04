@@ -20,6 +20,8 @@ namespace Codecool.Quest
         public SpriteBatch SpriteBatch;
 
         public GameMap _map;
+        
+        
 
         private TimeSpan _lastMoveTime;
 
@@ -75,7 +77,7 @@ namespace Codecool.Quest
                 Exit();
                 return;
             }
-
+            
             var deltaTime = gameTime.TotalGameTime - _lastMoveTime;
 
             if (deltaTime.TotalSeconds < MoveInterval)
@@ -177,11 +179,11 @@ namespace Codecool.Quest
         {
             var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
             
-            var matchedThings = _map.GetItems()
+            var matchedThings = _map.GetThings()
                 .Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
             if (matchedThings != null)
             {
-                Sort.SortForThings(matchedThings, _map.Player);
+                Sort.SortForThings(matchedThings, _map);
             }
             
             var matchedActor = _map.GetActors()
@@ -249,8 +251,6 @@ namespace Codecool.Quest
                     }
                 }
             }
-
-
             SpriteBatch.End();
 
 

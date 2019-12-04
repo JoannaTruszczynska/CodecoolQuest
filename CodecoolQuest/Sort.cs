@@ -7,15 +7,21 @@ namespace Codecool.Quest
 {
     public static class Sort
     {
-        public static void SortForThings(Thing matchedItem, Player player)
+        public static void SortForThings(Thing matchedItem, GameMap _map)
         {
+            var player = _map.Player;
+
+            foreach (var VARIABLE in player.GetItems())
+            {
+                
+            }
+            
             switch (matchedItem.Type)
             {
-                    
                 case "item":
                     matchedItem.UpdateOwnerProperties(player);
                     matchedItem.Disable();
-                    player.GetItems().Remove(matchedItem);
+                    _map.GetThings().Remove(matchedItem);
                     break;
 
                 case "weapon":
