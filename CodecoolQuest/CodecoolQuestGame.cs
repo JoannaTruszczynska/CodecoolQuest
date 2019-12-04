@@ -301,7 +301,7 @@ namespace Codecool.Quest
 
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-            GUI.Text(new Vector2(700, 5), _map.Player.Health.ToString(), Color.White);
+            GUI.Text(new Vector2(1100, 5), "Player health: " + _map.Player.Health.ToString(), Color.White);
             SpriteBatch.End();
 
             base.Draw(gameTime);
