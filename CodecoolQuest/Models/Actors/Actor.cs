@@ -56,7 +56,10 @@ namespace Codecool.Quest.Models.Actors
             if (enemy.Health > 0)
             {
                 enemy.InFightCantMove = true;
-                this.TakeDamage(enemy.AttackStrength);
+                TakeDamage(enemy.AttackStrength);
+                if(Health < 0) {
+                    Disable();
+                }
             }
             else
             {
