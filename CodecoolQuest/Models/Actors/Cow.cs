@@ -13,5 +13,10 @@ namespace Codecool.Quest.Models.Actors
         public override string Type { get; } = "cow";
         public override int AttackStrength { get; set; } = 0;
         public override string TileName { get; set; } = "cow";
+
+        public override void Move(int dx, int dy)
+        {
+            //doesn't move
+        }
     }
 }

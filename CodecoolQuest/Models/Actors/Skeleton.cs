@@ -7,7 +7,7 @@ namespace Codecool.Quest.Models.Actors
          public override string TileName { get; set; } = "skeleton";
 
          public override string Type { get; } = "skeleton";
-         public override int AttackStrength { get; set; } = 6;
+         public override int AttackStrength { get; set; } = 2;
 
          public override void Move(int dx, int dy)
         {
