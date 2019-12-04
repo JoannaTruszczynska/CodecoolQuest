@@ -29,7 +29,7 @@ namespace Codecool.Quest.Models
                 {"armedplayer", new Tile(27, 0)},
                 {"heart", new Tile(26,22) },
                 {"torch", new Tile(5,15) },
-                {"cow", new Tile(8,5) }
+                {"cow", new Tile(27,7) }
             };
 
         }
