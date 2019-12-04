@@ -28,7 +28,7 @@ namespace Codecool.Quest.Models
             _actors.Add(actor);
         }
         
-        public List<Actor> GetActors()
+        public List<Actor> GetActors()  // without player
         {
             return _actors;
         }

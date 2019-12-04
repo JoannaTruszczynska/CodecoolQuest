@@ -54,6 +54,10 @@ namespace Codecool.Quest
                 case "skeleton":
                     map.Player.Fight(matchedActor, map); 
                 break;
+
+                case "cow":
+                    map.Player.Fight(matchedActor, map);
+                    break;
             }
         }
     }

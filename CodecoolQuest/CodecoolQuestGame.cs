@@ -61,12 +61,41 @@ namespace Codecool.Quest
             _map = MapLoader.LoadMap();
         }
 
+        private void MoveEnemies()
+        {
+
+            foreach (Actor actor in _map.GetActors())
+            {
+                if (!actor.InFightCantMove)
+                {
+
+                    actor.Move(Util.RandomNumber(-1, 2), Util.RandomNumber(-1, 2));
+                }
+
+                actor.InFightCantMove = false;
+            }
+        }
+
+        private void DoTurn(int dx, int dy)
+        {
+            CheckNextCell(dx, dy);
+            var neighbourCell = _map.Player.Cell.GetNeighbor(dx, dy);
+
+            if (neighbourCell.CanIMoveHere)
+            {
+                _map.Player.Move(dx, dy);
+            }
+            MoveEnemies();
+        }
+
+
+
         /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+/// Allows the game to run logic such as updating the world,
+/// checking for collisions, gathering input, and playing audio.
+/// </summary>
+/// <param name="gameTime">Provides a snapshot of timing values.</param>
+protected override void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
             var neighbourCell = _map.Player.Cell.GetNeighbor(0, 0);
@@ -82,94 +111,24 @@ namespace Codecool.Quest
 
             if (deltaTime.TotalSeconds < MoveInterval)
                 return;
-            // fixme this is not using OOP principles
+            
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                // Move left
-                CheckNextCell(-1, 0);
-                neighbourCell = _map.Player.Cell.GetNeighbor(-1, 0);
-
-                if (neighbourCell.CanIMoveHere)
-                {
-                    _map.Player.Move(-1, 0);
-                }
-
-               
-                foreach (Skeleton skeleton in _map.GetActors())
-                {
-                    if (!skeleton.InFightCantMove)
-                    {
-                        Util.SkeletonMove(_map, neighbourCell, skeleton);
-                    }
-
-                    skeleton.InFightCantMove = false;
-                }
+                DoTurn(-1,0);
             }
+
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
-                // Move right
-                CheckNextCell(1, 0);
-                neighbourCell = _map.Player.Cell.GetNeighbor(1, 0);
-
-                if (neighbourCell.CanIMoveHere)
-                {
-                    _map.Player.Move(1, 0);
-                }
-              
-                foreach (Skeleton skeleton in _map.GetActors())
-                {
-                    if (!skeleton.InFightCantMove)
-                    {
-                        Util.SkeletonMove(_map, neighbourCell, skeleton);
-                    }
-
-                    skeleton.InFightCantMove = false;
-                }
+                DoTurn(1, 0);
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
-                // Move up
-                CheckNextCell(0, -1);
-                neighbourCell = _map.Player.Cell.GetNeighbor(0, -1);
-
-                if (neighbourCell.CanIMoveHere)
-                {
-                    _map.Player.Move(0, -1);
-                }
-              
-                foreach (Skeleton skeleton in _map.GetActors())
-                {
-                    if (!skeleton.InFightCantMove)
-                    {
-                        Util.SkeletonMove(_map, neighbourCell, skeleton);
-                    }
-
-                    skeleton.InFightCantMove = false;
-                }
+                DoTurn(0, -1);
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
-                CheckNextCell(0, 1);
-                // Move down
-                neighbourCell = _map.Player.Cell.GetNeighbor(0, 1);
-
-                if (neighbourCell.CanIMoveHere)
-                {
-                    _map.Player.Move(0, 1);
-                }
-             
-
-                foreach (Skeleton skeleton in _map.GetActors())
-                {
-                    if (!skeleton.InFightCantMove)
-                    {
-                        Util.SkeletonMove(_map, neighbourCell, skeleton);
-                    }
-
-                    skeleton.InFightCantMove = false;
-                }
+                DoTurn(0, 1);
             }
-
             _lastMoveTime = gameTime.TotalGameTime;
             base.Update(gameTime);
         }
