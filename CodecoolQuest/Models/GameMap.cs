@@ -11,21 +11,34 @@ namespace Codecool.Quest.Models
         private readonly Cell[,] _cells;
         public Player Player { get; set; }
 
-        private List<Thing> _items = new List<Thing>();
+        private List<Thing> _things = new List<Thing>();
 
         public List<Thing> GetItems()
-        {
-            return _items;
-        }
-
+                 {
+                     return _things;
+                 }
         public void SetItem(Thing thing)
         {
-            _items.Add(thing);
+            _things.Add(thing);
         }
 
-        public Skeleton Skeleton { get; set; }
+        private List<Actor> _actors = new List<Actor>();
+        public void SetActor(Actor actor)
+        {
+            _actors.Add(actor);
+        }
+        
+        public List<Actor> GetActors()
+        {
+            return _actors;
+        }
 
-        public List<Skeleton> skeletonList = new List<Skeleton>();
+
+        
+        
+
+        public Skeleton Skeleton { get; set; }
+        
 
         public GameMap(int width, int height, CellType defaultCellType)
         {

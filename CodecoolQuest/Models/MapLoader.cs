@@ -64,8 +64,7 @@ namespace Codecool.Quest.Models
                                     cell.CellType = CellType.Floor;
                                     cell.CanIMoveHere = false;
                                     cell.CanIFight = true;
-                                    map.Skeleton = new Skeleton(cell);
-                                    map.skeletonList.Add(map.Skeleton);
+                                    map.SetActor(new Skeleton(cell));
                                     break;
                                 }
                             case '@':

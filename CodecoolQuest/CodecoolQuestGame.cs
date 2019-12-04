@@ -99,7 +99,7 @@ namespace Codecool.Quest
                         neighbourCell.Actor.InFightCantMove = true;
                 }
 
-                foreach (Skeleton skeleton in _map.skeletonList)
+                foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
                     {
@@ -126,7 +126,7 @@ namespace Codecool.Quest
                         neighbourCell.Actor.InFightCantMove = true;
                 }
 
-                foreach (Skeleton skeleton in _map.skeletonList)
+                foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
                     {
@@ -153,7 +153,7 @@ namespace Codecool.Quest
                         neighbourCell.Actor.InFightCantMove = true;
                 }
 
-                foreach (Skeleton skeleton in _map.skeletonList)
+                foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
                     {
@@ -180,7 +180,7 @@ namespace Codecool.Quest
                         neighbourCell.Actor.InFightCantMove = true;
                 }
 
-                foreach (Skeleton skeleton in _map.skeletonList)
+                foreach (Skeleton skeleton in _map.GetActors())
                 {
                     if (!skeleton.InFightCantMove)
                     {
@@ -192,7 +192,6 @@ namespace Codecool.Quest
             }
 
             _lastMoveTime = gameTime.TotalGameTime;
-
             base.Update(gameTime);
         }
 
@@ -200,41 +199,19 @@ namespace Codecool.Quest
         private void CheckNextCell(int x, int y)
         {
             var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
-
-            var matchedItem = _map.GetItems()
+            
+            var matchedThings = _map.GetItems()
                 .Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
-
-            if (matchedItem != null)
+            if (matchedThings != null)
             {
-                switch (matchedItem.Type)
-                {
-                    case "item":
-                        matchedItem.UpdateOwnerProperties(_map.Player);
-                        matchedItem.Disable();
-                        _map.GetItems().Remove(matchedItem);
-                        break;
-
-                    case "weapon":
-                        matchedItem.UpdateOwnerProperties(_map.Player);
-                        _map.Player.TileName = "armedplayer";
-                        _map.Player.Weapon = matchedItem;
-                        matchedItem.Disable();
-                        _map.GetItems().Remove(matchedItem);
-                        break;
-
-                    case "door":
-                        List<Key> playerKeys = new List<Key>();
-                        // keys = _map.Player.GetItems().ForEach(item => item.Subtype == "dupa");
-                        foreach (var item in _map.Player.GetItems())
-                        {
-                            if (item.Subtype == "key")
-                                playerKeys.Add((Key) item);
-                        }
-
-                        Door door = (Door) matchedItem;
-                        door.KeyLock(playerKeys);
-                        break;
-                }
+                Sort.SortForThings(matchedThings, _map.Player);
+            }
+            
+            var matchedActor = _map.GetActors()
+                .Find(actor => actor.Cell.X == neighborCell.X && actor.Cell.Y == neighborCell.Y);
+            if (matchedActor != null)
+            {
+                Sort.SortForActors(matchedActor, _map.Player);
             }
         }
 

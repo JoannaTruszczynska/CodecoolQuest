@@ -22,11 +22,10 @@ namespace Codecool.Quest
                         EnemyYMoveOffset = 0;
                         break;
                     case 0:
-                        EnemyYMoveOffset = rand.Next(-1,2);
+                        EnemyYMoveOffset = rand.Next(-1, 2);
                         break;
 
                 }
-                
 
                 neighbourCell = skeleton.Cell.GetNeighbor(EnemyXMoveOffset, EnemyYMoveOffset);
                 if (neighbourCell.CanIMoveHere)

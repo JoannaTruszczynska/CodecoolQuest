@@ -42,6 +42,7 @@
         {
             neighbourCell.Actor.TakeDamage(this.AttackStrength);
             
+            
 
             if (neighbourCell.Actor.Health > 0)
             {
