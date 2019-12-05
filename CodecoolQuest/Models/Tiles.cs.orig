@@ -30,9 +30,11 @@ namespace Codecool.Quest.Models
                 {"heart", new Tile(26,22) },
                 {"torch", new Tile(5,15) },
                 {"cow", new Tile(27,7) },
-                {"meat", new Tile(16,28) },
-                {"ghost", new Tile(27,6) }
-
+<<<<<<< HEAD
+                {"meat", new Tile(16,28) }
+=======
+                {"ghost", new Tile(27, 6) }
+>>>>>>> 7158b1ab21a09ede9d0069e8bec1cf71e2520f30
             };
 
         }
