@@ -18,8 +18,8 @@ namespace Codecool.Quest.Models
             _tileMap = new Dictionary<string, Tile>
             {
                 {"empty", new Tile(0, 0)},
-                {"wall", new Tile(1, 3)},
-                {"floor", new Tile(2, 0)},
+                {"wall", new Tile(10, 17)},
+                {"floor", new Tile(16, 0)},
                 {"player", new Tile(25, 0)},
                 {"skeleton", new Tile(29, 6)},
                 {"blueKey", new Tile(17, 23)},
