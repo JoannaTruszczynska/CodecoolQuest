@@ -39,9 +39,9 @@ namespace Codecool.Quest
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.ApplyChanges();
+           // graphics.PreferredBackBufferWidth = 1280;
+           // graphics.PreferredBackBufferHeight = 720;
+           // graphics.ApplyChanges();
 
             _lastMoveTime = TimeSpan.Zero;
         }
