@@ -20,8 +20,8 @@ namespace Codecool.Quest
         public SpriteBatch SpriteBatch;
 
         public GameMap _map;
-        
-        
+
+        private bool GameOver = false;
 
         private TimeSpan _lastMoveTime;
 
@@ -76,17 +76,29 @@ namespace Codecool.Quest
             }
         }
 
+        public void EndGame()
+        {
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
+            GUI.Text(new Vector2(1000,5), "You died\nGameOver", Color.Orange);
+            SpriteBatch.End();
+        }
+
         private void DoTurn(int dx, int dy)
         {
-            CheckNextCell(dx, dy);
-            var neighbourCell = _map.Player.Cell.GetNeighbor(dx, dy);
-
-            if (neighbourCell.CanIMoveHere)
+            if (!GameOver)
             {
-                _map.Player.Move(dx, dy);
+                CheckNextCell(dx, dy);
+                var neighbourCell = _map.Player.Cell.GetNeighbor(dx, dy);
+
+                if (neighbourCell.CanIMoveHere)
+                {
+                    _map.Player.Move(dx, dy);
+                }
+
+                MoveEnemies();
             }
-            MoveEnemies();
         }
+        
 
 
 
@@ -142,14 +154,17 @@ protected override void Update(GameTime gameTime)
                 .Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
             if (matchedThings != null)
             {
-                Sort.SortForThings(matchedThings, _map);
+                Sort.SearchForThings(matchedThings, _map);
             }
             
             var matchedActor = _map.GetActors()
                 .Find(actor => actor.Cell.X == neighborCell.X && actor.Cell.Y == neighborCell.Y);
             if (matchedActor != null)
             {
-                Sort.SortForActors(matchedActor, _map);
+                if (Sort.SearchForActors(matchedActor, _map) == 0) // player umiera
+                {
+                    GameOver = true;
+                }
             }
         }
 
@@ -185,7 +200,9 @@ protected override void Update(GameTime gameTime)
         protected override void Draw(GameTime gameTime)
         {
             CalculateFogWar();
-
+            
+            
+            
             GraphicsDevice.Clear(Color.FromNonPremultiplied(71, 45, 60, 256));
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
@@ -209,14 +226,21 @@ protected override void Update(GameTime gameTime)
                         Tiles.DrawTile(SpriteBatch, cell, x, y);
                     }
                 }
+
+                int hp = _map.Player.Health;
+                hp = hp<0 ? 0 : hp;
+                    
+                GUI.Text(new Vector2(1100, 5), "Player health: " + hp, Color.White);
+
+                if (GameOver)
+                {
+                    GUI.Text(new Vector2(325, 280), "You Died\nGame Over ",
+                        Color.White);
+                }
             }
+
             SpriteBatch.End();
-
-
-            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-            GUI.Text(new Vector2(1100, 5), "Player health: " + _map.Player.Health.ToString(), Color.White);
-            SpriteBatch.End();
-
+            
             base.Draw(gameTime);
         }
     }

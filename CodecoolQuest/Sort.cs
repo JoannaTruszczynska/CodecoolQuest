@@ -7,14 +7,9 @@ namespace Codecool.Quest
 {
     public static class Sort
     {
-        public static void SortForThings(Thing matchedItem, GameMap _map)
+        public static void SearchForThings(Thing matchedItem, GameMap _map)
         {
             var player = _map.Player;
-
-            foreach (var VARIABLE in player.GetItems())
-            {
-                
-            }
             
             switch (matchedItem.Type)
             {
@@ -47,18 +42,25 @@ namespace Codecool.Quest
             }
         }
 
-        public static void SortForActors(Actor matchedActor, GameMap map)
+        public static int SearchForActors(Actor matchedActor, GameMap map)
         {
             switch (matchedActor.Type)
             {
                 case "skeleton":
-                    map.Player.Fight(matchedActor, map); 
-                break;
+                    map.Player.Fight(matchedActor, map);
+                    if (map.Player.Health <= 0)
+                    {
+                        return 0;
+                    }
+                    break;
 
                 case "cow":
                     map.Player.Fight(matchedActor, map);
                     break;
+                    
             }
+
+            return 1;
         }
     }
 }
