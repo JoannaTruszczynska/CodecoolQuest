@@ -131,6 +131,13 @@ namespace Codecool.Quest.Models
                                 map.SetActor(cow);
                                 break;
                             }
+                            case 'g':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = false;
+                                map.SetActor(new Ghost(cell));
+                                break;
+                            }
                         }
                     }
                 }

@@ -52,12 +52,22 @@ namespace Codecool.Quest
             switch (matchedActor.Type)
             {
                 case "skeleton":
-                    map.Player.Fight(matchedActor, map); 
+                    map.Player.Fight(matchedActor, map);
+                    if (matchedActor.Health <= 5)
+                    {
+                        matchedActor.TileName = "ghost";
+                    }
                 break;
 
                 case "cow":
                     map.Player.Fight(matchedActor, map);
-                    break;
+                break;
+
+                case "ghost":
+                    map.Player.Fight(matchedActor, map); 
+                break;
+
+
             }
         }
     }
