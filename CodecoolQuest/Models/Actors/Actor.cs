@@ -7,7 +7,7 @@ namespace Codecool.Quest.Models.Actors
     public abstract class Actor : IDrawable
     {
         public Cell Cell { get; private set; }
-        public int Health { get; set; } = 10;
+        public virtual int Health { get; set; } = 10;
 
         public abstract string Type { get; }
         public abstract int AttackStrength { get; set; }

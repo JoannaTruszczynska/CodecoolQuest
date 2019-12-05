@@ -7,9 +7,13 @@ namespace Codecool.Quest
 {
     public static class Sort
     {
-        public static void SearchForThings(Thing matchedItem, GameMap _map)
+        public static void SortForThings(Thing matchedItem, GameMap _map)
         {
             var player = _map.Player;
+
+            foreach (var VARIABLE in player.GetItems())
+            {
+            }
 
             switch (matchedItem.Type)
             {
@@ -33,10 +37,10 @@ namespace Codecool.Quest
                     foreach (var item in player.GetItems())
                     {
                         if (item.Subtype == "key")
-                            playerKeys.Add((Key) item);
+                            playerKeys.Add((Key)item);
                     }
 
-                    Door door = (Door) matchedItem;
+                    Door door = (Door)matchedItem;
                     door.KeyLock(playerKeys);
                     break;
 
@@ -48,24 +52,13 @@ namespace Codecool.Quest
             }
         }
 
-        public static int SearchForActors(Actor matchedActor, GameMap map) // returns 0 when player die returns 1 if not
+        public static void SortForActors(Actor matchedActor, GameMap map)
         {
             switch (matchedActor.Type)
             {
                 case "skeleton":
                     map.Player.Fight(matchedActor, map);
-
-                    if (map.Player.Health <= 0)
-                    {
-                        return 0;
-                    }
-
-                    if (matchedActor.Health <= 5)
-                    {
-                        matchedActor.TileName = "ghost";
-
-                    }
-
+<<<<<<< HEAD
                     break;
 
                 case "cow":
@@ -73,15 +66,24 @@ namespace Codecool.Quest
                     Meat meat = new Meat(map.GetCell(matchedActor.X, matchedActor.Y));
                     map.SetThing(meat);
                     break;
+=======
+                    if (matchedActor.Health <= 5)
+                    {
+                        matchedActor.TileName = "ghost";
+                    }
+                break;
+
+                case "cow":
+                    map.Player.Fight(matchedActor, map);
+                break;
 
                 case "ghost":
-                    map.Player.Fight(matchedActor, map);
-                    break;
+                    map.Player.Fight(matchedActor, map); 
+                break;
 
 
+>>>>>>> 7158b1ab21a09ede9d0069e8bec1cf71e2520f30
             }
-
-            return 1;
         }
     }
 }
