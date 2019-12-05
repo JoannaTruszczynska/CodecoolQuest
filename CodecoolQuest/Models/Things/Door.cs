@@ -11,12 +11,17 @@ namespace Codecool.Quest.Models.Things
 {
     public class Door : Thing
     {
-        public Door(Cell cell, List<string> allowKeys) : base(cell)
+        public Door(Cell cell, List<string> allowKeys,  CodecoolQuestGame main, string subtype = "door")
+            : base(cell)
         {
             _allowKeys = allowKeys;
             cell.CanIMoveHere = false;
+            Subtype = subtype;
+            Main = main;
         }
 
+        private CodecoolQuestGame Main { get; }
+        
         private List<string> _allowKeys { get;}
         public void KeyLock(List<Key> playerKeys)// todo keylock not work correctly !!!
         {
@@ -27,17 +32,25 @@ namespace Codecool.Quest.Models.Things
                 if (allowKeys.Contains(key.Name))
                 {
                     this.Cell.CanIMoveHere = true;
+                    Main._endMap.Player.TileName = Main._map.Player.TileName;
+                    Main._map = Main._endMap;
+                    
                 }
             }
-            
         }
 
         public override string TileName { get; } = "door";
         public override string Type { get; } = "door";
-        public override string Subtype { get; } = "door";
+        public override string Subtype { get; }
 
         public override void UpdateOwnerProperties(Actor actor)
         {
+            if (Subtype == "exitDoor")
+            {
+                Console.WriteLine("Exit");
+                Main.ExitGame = true;
+
+            }
         }
     }
 }

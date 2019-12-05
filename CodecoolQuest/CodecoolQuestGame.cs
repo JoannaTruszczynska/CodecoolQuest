@@ -20,9 +20,10 @@ namespace Codecool.Quest
         public SpriteBatch SpriteBatch;
 
         public GameMap _map;
-        
-        
+        public GameMap _endMap;
 
+        public bool ExitGame { get; set; } = false;
+        
         private TimeSpan _lastMoveTime;
 
         public const double MoveInterval = 0.1;
@@ -58,20 +59,17 @@ namespace Codecool.Quest
             GUI.Load();
             Tiles.Load();
 
-            _map = MapLoader.LoadMap();
+            _map = MapLoader.LoadMap(MapsPaths.FirstLevel, this );
+            _endMap = MapLoader.LoadMap(MapsPaths.EndGame, this);
         }
-
         private void MoveEnemies()
         {
-
             foreach (Actor actor in _map.GetActors())
             {
                 if (!actor.InFightCantMove)
                 {
-
                     actor.Move(Util.RandomNumber(-1, 2), Util.RandomNumber(-1, 2));
                 }
-
                 actor.InFightCantMove = false;
             }
         }
@@ -87,9 +85,7 @@ namespace Codecool.Quest
             }
             MoveEnemies();
         }
-
-
-
+        
         /// <summary>
 /// Allows the game to run logic such as updating the world,
 /// checking for collisions, gathering input, and playing audio.
@@ -98,11 +94,10 @@ namespace Codecool.Quest
 protected override void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
-            var neighbourCell = _map.Player.Cell.GetNeighbor(0, 0);
 
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
-                // Exit the game
+                // Exit the gamee
                 Exit();
                 return;
             }
@@ -131,9 +126,9 @@ protected override void Update(GameTime gameTime)
             }
             _lastMoveTime = gameTime.TotalGameTime;
             base.Update(gameTime);
+            if(ExitGame) Exit();
         }
-
-
+        
         private void CheckNextCell(int x, int y)
         {
             var neighborCell = _map.Player.Cell.GetNeighbor(x, y);
@@ -211,8 +206,7 @@ protected override void Update(GameTime gameTime)
                 }
             }
             SpriteBatch.End();
-
-
+            
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
             GUI.Text(new Vector2(1100, 5), "Player health: " + _map.Player.Health.ToString(), Color.White);
             SpriteBatch.End();

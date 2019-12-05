@@ -10,11 +10,6 @@ namespace Codecool.Quest
         public static void SortForThings(Thing matchedItem, GameMap _map)
         {
             var player = _map.Player;
-
-            foreach (var VARIABLE in player.GetItems())
-            {
-                
-            }
             
             switch (matchedItem.Type)
             {
@@ -33,6 +28,7 @@ namespace Codecool.Quest
                     break;
 
                 case "door":
+                    matchedItem.UpdateOwnerProperties(player);
                     List<Key> playerKeys = new List<Key>();
                     // keys = _map.Player.GetItems().ForEach(item => item.Subtype == "dupa");
                     foreach (var item in player.GetItems())

@@ -13,10 +13,10 @@ namespace Codecool.Quest.Models
 {
     public class MapLoader
     {
-        public static GameMap LoadMap()
+        public static GameMap LoadMap(string _path, CodecoolQuestGame main)
         {
             
-            using var stream = new StreamReader("map.txt");
+            using var stream = new StreamReader(_path);
             var firstLine = stream.ReadLine();
             var firstLineSplit = firstLine.Split(' ');
 
@@ -89,7 +89,14 @@ namespace Codecool.Quest.Models
                             case 'd':
                             {
                                 cell.CellType = CellType.Floor;
-                                Thing door = new Door(cell, new List<string>(){"blueKey"});
+                                Thing door = new Door(cell, new List<string>(){"blueKey"}, main);
+                                map.SetThing(door);
+                                break;
+                            }
+                            case 'X':
+                            {
+                                cell.CellType = CellType.Floor;
+                                Thing door = new Door(cell, new List<string>(), main, "exitDoor");
                                 map.SetThing(door);
                                 break;
                             }

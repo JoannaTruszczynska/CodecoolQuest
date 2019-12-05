@@ -8,9 +8,10 @@ namespace Codecool.Quest
     public static class Util
 
     {
+        private static readonly Random rand = new Random();
         public static int RandomNumber(int x, int y)
         {
-            Random rand = new Random();
+
             return rand.Next(x, y);
 
         }
