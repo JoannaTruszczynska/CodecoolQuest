@@ -28,7 +28,6 @@ namespace Codecool.Quest.Models.Things
             var allowKeys = new List<string>(_allowKeys);
             foreach (var key in playerKeys)
             {
-                playerKeys.ForEach(x => Console.WriteLine(x.Name));
                 if (allowKeys.Contains(key.Name))
                 {
                     this.Cell.CanIMoveHere = true;
@@ -47,9 +46,7 @@ namespace Codecool.Quest.Models.Things
         {
             if (Subtype == "exitDoor")
             {
-                Console.WriteLine("Exit");
                 Main.ExitGame = true;
-
             }
         }
     }
