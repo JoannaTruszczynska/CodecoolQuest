@@ -239,17 +239,12 @@ protected override void Update(GameTime gameTime)
 
                 if (GameOver)
                 {
-                    GUI.Text(new Vector2(325, 280), "You Died\nGame Over ",
+                    GUI.Text(new Vector2(300, 300), "You Died\nGame Over ",
                         Color.White);
                 }
             }
             SpriteBatch.End();
-            
-            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-            GUI.Text(new Vector2(1100, 5), "Player health: " + _map.Player.Health.ToString(), Color.White);
 
-            SpriteBatch.End();
-            
             base.Draw(gameTime);
         }
     }
