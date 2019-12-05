@@ -14,7 +14,7 @@ namespace Codecool.Quest.Models.Things
         {
         }
 
-        public int ExtraDamage { get;} = 3;
+        public int ExtraDamage { get;} = 5;
         public override string TileName { get; } = "sword";
         public override string Type { get; } = "weapon";
         public override string Subtype { get; } = "sword";
