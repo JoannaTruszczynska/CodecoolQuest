@@ -58,13 +58,23 @@ namespace Codecool.Quest
             {
                 case "skeleton":
                     map.Player.Fight(matchedActor, map);
+                    if (matchedActor.Health <= 5)
+                    {
+                        matchedActor.TileName = "ghost";
+                    }
                     break;
 
                 case "cow":
                     map.Player.Fight(matchedActor, map);
                     Meat meat = new Meat(map.GetCell(matchedActor.X, matchedActor.Y));
                     map.SetThing(meat);
-                    break;
+                break;
+
+                case "ghost":
+                    map.Player.Fight(matchedActor, map); 
+                break;
+
+
             }
         }
     }
