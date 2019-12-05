@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Codecool.Quest.Models;
+﻿using Codecool.Quest.Models;
 using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
+using System.Collections.Generic;
 
 namespace Codecool.Quest
 {
@@ -13,9 +13,8 @@ namespace Codecool.Quest
 
             foreach (var VARIABLE in player.GetItems())
             {
-                
             }
-            
+
             switch (matchedItem.Type)
             {
                 case "item":
@@ -38,11 +37,17 @@ namespace Codecool.Quest
                     foreach (var item in player.GetItems())
                     {
                         if (item.Subtype == "key")
-                            playerKeys.Add((Key) item);
+                            playerKeys.Add((Key)item);
                     }
 
-                    Door door = (Door) matchedItem;
+                    Door door = (Door)matchedItem;
                     door.KeyLock(playerKeys);
+                    break;
+
+                case "meat":
+                    matchedItem.UpdateOwnerProperties(player);
+                    matchedItem.Disable();
+                    _map.GetThings().Remove(matchedItem);
                     break;
             }
         }
@@ -52,11 +57,13 @@ namespace Codecool.Quest
             switch (matchedActor.Type)
             {
                 case "skeleton":
-                    map.Player.Fight(matchedActor, map); 
-                break;
+                    map.Player.Fight(matchedActor, map);
+                    break;
 
                 case "cow":
                     map.Player.Fight(matchedActor, map);
+                    Meat meat = new Meat(map.GetCell(matchedActor.X, matchedActor.Y));
+                    map.SetThing(meat);
                     break;
             }
         }
