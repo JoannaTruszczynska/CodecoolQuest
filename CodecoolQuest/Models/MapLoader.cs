@@ -138,6 +138,23 @@ namespace Codecool.Quest.Models
                                 map.SetActor(cow);
                                 break;
                             }
+                            case 'm':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = true;
+                                Thing meat = new Meat(cell);
+                                map.SetThing(meat);
+                                break;
+                            }
+
+                            case 'g':
+                            {
+                                cell.CellType = CellType.Floor;
+                                cell.CanIMoveHere = false;
+                                Ghost ghost  = new Ghost (cell);
+                                map.SetActor(ghost);
+                                break;
+                            }
                         }
                     }
                 }

@@ -12,6 +12,7 @@ namespace Codecool.Quest.Models.Things
         }
 
         public override string TileName { get; set; } = "ghost";
+        public override int Health { get; set; } = 5;
 
         public override string Type { get; } = "skeleton";
         public override int AttackStrength { get; set; } = 1;

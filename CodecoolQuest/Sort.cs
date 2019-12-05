@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
-using Codecool.Quest.Models;
+﻿using Codecool.Quest.Models;
 using Codecool.Quest.Models.Actors;
 using Codecool.Quest.Models.Things;
+using System.Collections.Generic;
 
 namespace Codecool.Quest
 {
     public static class Sort
     {
-        public static void SortForThings(Thing matchedItem, GameMap _map)
+        public static void SearchForThings(Thing matchedItem, GameMap _map)
         {
             var player = _map.Player;
             
+
             switch (matchedItem.Type)
             {
                 case "item":
@@ -40,21 +41,49 @@ namespace Codecool.Quest
                     Door door = (Door) matchedItem;
                     door.KeyLock(playerKeys);
                     break;
+
+                case "meat":
+                    matchedItem.UpdateOwnerProperties(player);
+                    matchedItem.Disable();
+                    _map.GetThings().Remove(matchedItem);
+                    break;
             }
         }
 
-        public static void SortForActors(Actor matchedActor, GameMap map)
+        public static int SearchForActors(Actor matchedActor, GameMap map) // returns 0 when player die returns 1 if not
         {
             switch (matchedActor.Type)
             {
                 case "skeleton":
-                    map.Player.Fight(matchedActor, map); 
-                break;
+                    map.Player.Fight(matchedActor, map);
+
+                    if (map.Player.Health <= 0)
+                    {
+                        return 0;
+                    }
+
+                    if (matchedActor.Health <= 5)
+                    {
+                        matchedActor.TileName = "ghost";
+
+                    }
+
+                    break;
 
                 case "cow":
                     map.Player.Fight(matchedActor, map);
+                    Meat meat = new Meat(map.GetCell(matchedActor.X, matchedActor.Y));
+                    map.SetThing(meat);
                     break;
+
+                case "ghost":
+                    map.Player.Fight(matchedActor, map);
+                    break;
+
+
             }
+
+            return 1;
         }
     }
 }

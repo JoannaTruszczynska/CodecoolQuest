@@ -20,6 +20,9 @@ namespace Codecool.Quest
         public SpriteBatch SpriteBatch;
 
         public GameMap _map;
+
+        private bool GameOver = false;
+
         public GameMap _endMap;
 
         public bool ExitGame { get; set; } = false;
@@ -62,30 +65,49 @@ namespace Codecool.Quest
             _map = MapLoader.LoadMap(MapsPaths.FirstLevel, this );
             _endMap = MapLoader.LoadMap(MapsPaths.EndGame, this);
         }
+
         private void MoveEnemies()
         {
+
             foreach (Actor actor in _map.GetActors())
             {
                 if (!actor.InFightCantMove)
                 {
+
                     actor.Move(Util.RandomNumber(-1, 2), Util.RandomNumber(-1, 2));
                 }
+
                 actor.InFightCantMove = false;
             }
         }
 
+        public void EndGame()
+        {
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
+            GUI.Text(new Vector2(1000,5), "You died\nGameOver", Color.Orange);
+            SpriteBatch.End();
+        }
+
         private void DoTurn(int dx, int dy)
         {
-            CheckNextCell(dx, dy);
-            var neighbourCell = _map.Player.Cell.GetNeighbor(dx, dy);
-
-            if (neighbourCell.CanIMoveHere)
+            if (!GameOver)
             {
-                _map.Player.Move(dx, dy);
+                CheckNextCell(dx, dy);
+                var neighbourCell = _map.Player.Cell.GetNeighbor(dx, dy);
+
+                if (neighbourCell.CanIMoveHere)
+                {
+                    _map.Player.Move(dx, dy);
+                }
+
+                MoveEnemies();
             }
-            MoveEnemies();
         }
         
+        
+
+
+
         /// <summary>
 /// Allows the game to run logic such as updating the world,
 /// checking for collisions, gathering input, and playing audio.
@@ -97,7 +119,7 @@ protected override void Update(GameTime gameTime)
 
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
-                // Exit the gamee
+                // Exit the game
                 Exit();
                 return;
             }
@@ -137,14 +159,17 @@ protected override void Update(GameTime gameTime)
                 .Find(item => item.Cell.X == neighborCell.X && item.Cell.Y == neighborCell.Y);
             if (matchedThings != null)
             {
-                Sort.SortForThings(matchedThings, _map);
+                Sort.SearchForThings(matchedThings, _map);
             }
             
             var matchedActor = _map.GetActors()
                 .Find(actor => actor.Cell.X == neighborCell.X && actor.Cell.Y == neighborCell.Y);
             if (matchedActor != null)
             {
-                Sort.SortForActors(matchedActor, _map);
+                if (Sort.SearchForActors(matchedActor, _map) == 0) // player umiera
+                {
+                    GameOver = true;
+                }
             }
         }
 
@@ -180,7 +205,9 @@ protected override void Update(GameTime gameTime)
         protected override void Draw(GameTime gameTime)
         {
             CalculateFogWar();
-
+            
+            
+            
             GraphicsDevice.Clear(Color.FromNonPremultiplied(71, 45, 60, 256));
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
@@ -204,13 +231,25 @@ protected override void Update(GameTime gameTime)
                         Tiles.DrawTile(SpriteBatch, cell, x, y);
                     }
                 }
+
+                int hp = _map.Player.Health;
+                hp = hp<0 ? 0 : hp;
+                    
+                GUI.Text(new Vector2(1100, 5), "Player health: " + hp, Color.White);
+
+                if (GameOver)
+                {
+                    GUI.Text(new Vector2(325, 280), "You Died\nGame Over ",
+                        Color.White);
+                }
             }
             SpriteBatch.End();
             
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
             GUI.Text(new Vector2(1100, 5), "Player health: " + _map.Player.Health.ToString(), Color.White);
-            SpriteBatch.End();
 
+            SpriteBatch.End();
+            
             base.Draw(gameTime);
         }
     }
